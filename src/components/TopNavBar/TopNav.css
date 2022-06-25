@@ -1,0 +1,36 @@
+.icons-color {
+  color: rgb(160, 160, 160);
+}
+.topNav {
+  background-color: rgb(248, 249, 253);
+}
+.w {
+  background-color: #205375;
+}
+.round {
+  border-radius: 10px;
+}
+.w-1000 {
+  width: 100%;
+}
+.icons-color:hover {
+  color: rgb(81, 81, 81);
+  font-size: 1.2rem;
+}
+.fabars {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+}
+.top {
+  position: sticky;
+  top: 0;
+}
+.topnav h5{
+  color: #EFEFEF !important;
+}
+.time{
+  color: #EFEFEF !important;
+  font-weight: 300;
+}

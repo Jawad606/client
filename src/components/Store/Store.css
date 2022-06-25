@@ -1,0 +1,74 @@
+table,
+th,
+tr,
+td {
+  border: unset;
+}
+.s table{
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+.s{
+    border-radius: 10px;
+    border: 1px gainsboro solid;
+    border-radius: 10px;
+}
+.table > :not(:first-child) {
+  border-top: 1px solid gainsboro;
+}
+.s th {
+  position: relative;
+  z-index: -1;
+}
+
+.s th:after {
+  content: " ";
+  position: absolute;
+  border-left: 1px gainsboro solid;
+  top: 34%;
+  right: 0;
+  height: 40%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: crimson;
+  border: 1px dotted rgba(220, 20, 60, 0.6);
+  cursor: pointer;
+}
+.viewButton:hover {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: darkblue;
+    color: #fff;
+    border: 1px dotted rgba(0, 0, 139, 0.596);
+    cursor: pointer;
+  }
+  .deleteButton:hover {
+    padding: 2px 5px;
+    border-radius: 5px;
+    background-color: crimson;
+    color: #fff;
+    border: 1px dotted rgba(220, 20, 60, 0.6);
+    cursor: pointer;
+  }
+  .w-90{
+      width: 90%;
+  }

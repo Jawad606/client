@@ -1,0 +1,1 @@
+export const baseUrl='https://university-backend-app.herokuapp.com';

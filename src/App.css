@@ -1,0 +1,32 @@
+.center{
+  background-color: aquamarine;
+}
+.main-container{
+  display: flex;
+}
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+  padding: 0;
+}
+main{
+  width: 100vw;
+  position: relative;
+}
+body::-webkit-scrollbar{
+  border-radius: 50px;
+}
+*{
+  scroll-behavior: smooth;
+  scrollbar-color:  rgb(46,54,69) rgb(210,210,210) !important;
+  scrollbar-width:thin !important;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+.ms-10{
+  margin-left:400px;
+}
+.round-button{
+  border-radius:50px;
+}

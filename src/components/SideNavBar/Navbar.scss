@@ -1,0 +1,11 @@
+// Your variable overrides
+$sidebar-bg-color: #F6F5F5;
+$sidebar-color: #276678 !default;
+$sidebar-width: 270px !default;
+$sidebar-collapsed-width: 80px !default;
+$highlight-color: #276678 !default;
+$submenu-bg-color: #cbc9c9; 
+$submenu-bg-color-collapsed: #2b2b2b !default;
+$icon-bg-color: #D3E0EA !default;
+
+@import '~react-pro-sidebar/dist/scss/styles.scss';

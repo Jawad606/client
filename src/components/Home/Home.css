@@ -1,0 +1,53 @@
+.box-shodow{
+  -webkit-box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
+box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
+}
+.featured {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.featuredItem {
+  /* flex: 1; */
+  margin: 5px 20px;
+  padding: 30px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.featuredTitle {
+  font-size: 20px;
+  color: rgb(39, 39, 39);
+}
+
+.featuredMoneyContainer {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.featuredMoney {
+  font-size: 35px;
+  font-weight: 600;
+  color: rgb(92, 92, 92);
+}
+.featuredIcon {
+  font-size: 14px;
+  margin-left: 5px;
+  color: green;
+}
+.featuredSub {
+  font-size: 15px;
+  color: rgb(52, 52, 52);
+}
+.width {
+  width: 100%;
+}
+
+.oneBorder{
+  border-left: 1px solid black;
+}

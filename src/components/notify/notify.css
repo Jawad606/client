@@ -1,0 +1,10 @@
+.notify {
+  background-color: rgb(248, 246, 246);
+  width: 300px;
+  height: max-content;
+  position: absolute;
+  right: 179px;
+  top: 73px;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
