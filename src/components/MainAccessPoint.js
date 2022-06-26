@@ -56,6 +56,7 @@ function MainAccessPoint() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/client" element={<Login />} />
       </Routes>
 
       <div className={`d-flex ${toggled ? "toggled" : ""}`}>
