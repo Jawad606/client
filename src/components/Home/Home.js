@@ -6,6 +6,7 @@ import IsLoading from "../LoadingPage/isLoading";
 import { showItem } from "../../features/itemSlice";
 import { showVender } from "../../features/venderSlice";
 import { showUni } from "../../features/universitySlice";
+import { showUser } from "../../features/userSlice";
 import { showAssign } from "../../features/assignSlice";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -13,8 +14,9 @@ import Chart from "./Chart";
 import FindTag from "./FindTag";
 ChartJS.register(ArcElement, Tooltip, Legend);
 const RenderCard = () => {
-  const { catagoryList, status } = useSelector(showCatagory);
+  const { catagoryList } = useSelector(showCatagory);
   const { itemList } = useSelector(showItem);
+
 
   const CatagoryTotal = () => {
     var total = 0;
@@ -34,21 +36,15 @@ const RenderCard = () => {
     <>
       <div className="featured container d-flex justify-content-center py-3">
         <div className="row width d-flex justify-content-center">
-          {!(status === "Loadingfetch") ? (
-            <>
-              <div className="featuredItem col-md-5 col-sm-12">
-                <span className="featuredTitle">Catagories</span>
-                <div className="featuredMoneyContainer d-flex justify-content-center">
-                  <span className="featuredMoney ">{CatagoryTotal()}</span>
-                </div>
-                <span className="featuredSub">Total catagories</span>
+          <>
+            <div className="featuredItem col-md-5 col-sm-12">
+              <span className="featuredTitle">Catagories</span>
+              <div className="featuredMoneyContainer d-flex justify-content-center">
+                <span className="featuredMoney ">{CatagoryTotal()}</span>
               </div>
-            </>
-          ) : (
-            <>
-              <IsLoading />
-            </>
-          )}
+              <span className="featuredSub">Total catagories</span>
+            </div>
+          </>
           <div className="featuredItem col-md-5 col-sm-12">
             <span className="featuredTitle">Items</span>
             <div className="featuredMoneyContainer d-flex justify-content-center">
@@ -66,12 +62,17 @@ function Home() {
   const { assignList } = useSelector(showAssign);
   const [filterData, setfilterData] = useState([]);
   const [filterDataAssign, setfilterDataAssign] = useState([]);
+  const { userList, status } = useSelector(showUser);
   useEffect(() => {
     const filter = () => {
       return universityList.filter(({ createdAt }) => {
-        const dateCreated = new Intl.DateTimeFormat("en-US", { dateStyle: "short", }).format(new Date(Date.parse(createdAt)));
-        let today = new Date().toLocaleDateString("en-US", { dateStyle: "short" });
-        console.log(dateCreated+"  "  + today  )
+        const dateCreated = new Intl.DateTimeFormat("en-US", {
+          dateStyle: "short",
+        }).format(new Date(Date.parse(createdAt)));
+        let today = new Date().toLocaleDateString("en-US", {
+          dateStyle: "short",
+        });
+        console.log(dateCreated + "  " + today);
         return dateCreated === today;
       });
     };
@@ -81,9 +82,13 @@ function Home() {
   useEffect(() => {
     const filter = () => {
       return assignList.filter(({ createdAt }) => {
-        const dateCreated = new Intl.DateTimeFormat("en-US", { dateStyle: "short", }).format(new Date(Date.parse(createdAt)));
-        let today = new Date().toLocaleDateString("en-US", { dateStyle: "short" });
-        console.log(dateCreated+"  "  + today  )
+        const dateCreated = new Intl.DateTimeFormat("en-US", {
+          dateStyle: "short",
+        }).format(new Date(Date.parse(createdAt)));
+        let today = new Date().toLocaleDateString("en-US", {
+          dateStyle: "short",
+        });
+        console.log(dateCreated + "  " + today);
         return dateCreated === today;
       });
     };
@@ -91,7 +96,7 @@ function Home() {
   }, [assignList]);
   return (
     <>
-   
+      {status === "Loginsuccess" && <isLoading />}
       <div className="container w-100 Page-Margin ">
         <div className="row">
           <div className="col-md-12 text-center">
@@ -99,11 +104,11 @@ function Home() {
           </div>
         </div>
         <div className="row  mx-5 ">
-          <div className='col-md-4 p px-1'>
-              <Chart/>
+          <div className="col-md-4 p px-1">
+            <Chart />
           </div>
           <div className="col-md ms-4 p">
-            <FindTag/>
+            <FindTag />
           </div>
         </div>
         <div className="row px-5 py-4 ">
@@ -135,7 +140,7 @@ function Home() {
             </table>
           </div>
           <div className="col-md-6 ">
-               <Link to={"/assignproduct"}>
+            <Link to={"/assignproduct"}>
               <h4 className="text-center">Assign</h4>
             </Link>
             <table className="table table-hover p ">

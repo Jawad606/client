@@ -6,8 +6,8 @@ import { baseUrl } from '../Base/baseUrl';
 
 export const login =createAsyncThunk(
   'user/login',
-  async(value,dispatch,getState)=>{
-    return await axios.post(baseUrl+"/users/login",value).then((res)=>res.data)
+  (value,dispatch,getState)=>{
+    return  axios.post(baseUrl+"/users/login",value).then((res)=>res.data)
   }
 )
 
@@ -46,8 +46,7 @@ extraReducers:{
     state.status='LoadingLogin'
   },
   [login.fulfilled]:(state,action)=>{
-    state.status='success'
-   
+    state.status='Loginsuccess'
     state.userList=action.payload
     localStorage.setItem('User',action.payload.user.firstname)
     localStorage.setItem('Data', JSON.stringify(action.payload.user))

@@ -17,7 +17,8 @@ function Login() {
       username: userName,
       password: password,
     };
-      dispatch(login(data)).then(() => {
+      dispatch(login(data)).then((response) => {
+        console.log(response)
         navigate("/home");
       });
 
