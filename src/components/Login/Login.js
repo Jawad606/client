@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Login.css";
@@ -45,7 +45,7 @@ function Login() {
                     <img src="./COMSATS_new_logo.png" width={'100'} alt="" />
                       <h2>Inventory Management System</h2>
                       <p>Comsats Universtiy Sahiwal</p>
-                       <a className='Remove' href='https://jawad606.github.io/personal-portfolio' target='_blank'> Codex Developers</a> 
+                       <a className='Remove' href='https://jawad606.github.io/personal-portfolio' target='_blank' rel="noreferrer"> Codex Developers</a> 
                     </div>
                   </div>
                   <div className="login-wrap p-4 p-lg-5">

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { showCatagory } from "../../features/catagorySlice";
 import IsLoading from "../LoadingPage/isLoading";
 import { showItem } from "../../features/itemSlice";
-import { showVender } from "../../features/venderSlice";
 import { showUni } from "../../features/universitySlice";
 import { showUser } from "../../features/userSlice";
 import { showAssign } from "../../features/assignSlice";
@@ -62,7 +61,7 @@ function Home() {
   const { assignList } = useSelector(showAssign);
   const [filterData, setfilterData] = useState([]);
   const [filterDataAssign, setfilterDataAssign] = useState([]);
-  const { userList, status } = useSelector(showUser);
+  const {  status } = useSelector(showUser);
   useEffect(() => {
     const filter = () => {
       return universityList.filter(({ createdAt }) => {
@@ -96,7 +95,7 @@ function Home() {
   }, [assignList]);
   return (
     <>
-      {status === "LoadingLogin" && <isLoading />}
+      {status === "LoadingLogin" && <IsLoading />}
       <div className="container w-100 Page-Margin ">
         <div className="row">
           <div className="col-md-12 text-center">
