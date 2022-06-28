@@ -96,7 +96,7 @@ function Home() {
   }, [assignList]);
   return (
     <>
-      {status === "Loginsuccess" && <isLoading />}
+      {status === "LoadingLogin" && <isLoading />}
       <div className="container w-100 Page-Margin ">
         <div className="row">
           <div className="col-md-12 text-center">
