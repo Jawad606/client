@@ -12,8 +12,11 @@ import { fetchStore } from "../features/storeSlice";
 import { fetchUni } from "../features/universitySlice";
 import { fetchVender } from "../features/venderSlice";
 import { fetchtags } from "../features/tagSlice";
+
 function ApiComponent() {
+ 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchSpecific());
   }, [dispatch]);

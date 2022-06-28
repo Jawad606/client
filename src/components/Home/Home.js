@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import { useSelector } from "react-redux";
+import { showUser } from "../../features/userSlice";
 import { showCatagory } from "../../features/catagorySlice";
 import IsLoading from "../LoadingPage/isLoading";
 import { showItem } from "../../features/itemSlice";
 import { showUni } from "../../features/universitySlice";
-import { showUser } from "../../features/userSlice";
 import { showAssign } from "../../features/assignSlice";
 import { Link } from "react-router-dom";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";

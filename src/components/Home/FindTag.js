@@ -7,14 +7,12 @@ function FindTag() {
   const [tagName, setTagname] = useState("");
   const [filter, setFilter] = useState([]);
   useEffect(() => {
-    console.log(tagName);
     const filtered = tagList
       .filter((item) => item.tag === tagName)
       .map((item) => item);
     setFilter(filtered);
   }, [tagList, tagName]);
 
-  console.log(filter);
   return (
     <div>
       <input

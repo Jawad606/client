@@ -18,8 +18,12 @@ function Login() {
       password: password,
     };
       dispatch(login(data)).then((response) => {
-        console.log(response)
-        navigate("/home");
+        if(response.payload.success){
+          navigate("/home");
+        }
+        else{
+          console.log("try again later")
+        }
       });
 
     event.preventDefault();

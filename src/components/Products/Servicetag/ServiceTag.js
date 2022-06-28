@@ -87,6 +87,7 @@ function ServiceTag() {
             <th>ID</th>
             <th>Catagory</th>
             <th>Item</th>
+            <th>Tag No</th>
             <th>Model no</th>
             <th>Specification</th>
             <th>Assigned</th>
@@ -100,6 +101,7 @@ function ServiceTag() {
                 <td>{i}</td>
                 <td>{item.catagory.catagoryName}</td>
                 <td>{item.item.itemName}</td>
+                <td>{item.tag}</td>
                 <td>{item.specification.model}</td>
                 <td>{item.specification.specification}</td>
                 <td>{item.statusOfassign}</td>

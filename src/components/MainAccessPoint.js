@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Routes,
   Route,
@@ -15,7 +15,6 @@ import AssignProduct from "./Assign/AssignProduct/AssignProduct";
 import ServiceTagAssign from "./Assign/AssignProduct/ServiceTag/ServiceTagAssign";
 import AssignStore from "./Assign/AssignStore/AssignStore";
 import BillDetail from "./Bill/BillDetail/BillDetail";
-import PayBill from "./Bill/PayBill/PayBill";
 import AddCatagory from "./Catagory/AddCatagories/AddCatagory";
 import AddItems from "./Catagory/AddCatagories/AddItems/AddItems";
 import Catagories from "./Catagory/Catagories/Catagories";
@@ -36,7 +35,8 @@ import AddUser from "./User/AddUser/AddUser";
 import Setting from "./User/Setting/Setting";
 import AddVender from "./Vender/AddVender/AddVender";
 import Vender from "./Vender/Venders/Vender";
-
+import { useSelector } from "react-redux";
+import { showUser } from "../features/userSlice";
 export function RenderNevigation() {
   const navigate = useNavigate();
   navigate("/home");
@@ -47,10 +47,12 @@ function MainAccessPoint() {
     return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
   };
   const location = useLocation();
+   const {status}=useSelector(showUser)
   const [toggled, setToggled] = useState(false);
   const handleToggleSidebar = (value) => {
     setToggled(value);
   };
+ 
   return (
     <>
       <Routes>
@@ -61,7 +63,7 @@ function MainAccessPoint() {
 
       <div className={`d-flex ${toggled ? "toggled" : ""}`}>
         {location.pathname !== "/login" && location.pathname !== "/" && (
-          <ApiComponent />
+          status==="Loginsuccess"  &&  <ApiComponent />
         )}
         {location.pathname !== "/login" && location.pathname !== "/" && (
           <NavBar toggled={toggled} handleToggleSidebar={handleToggleSidebar}>
