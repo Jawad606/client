@@ -47,12 +47,12 @@ function MainAccessPoint() {
     return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
   };
   const location = useLocation();
-   const {status}=useSelector(showUser)
+  const { status } = useSelector(showUser);
   const [toggled, setToggled] = useState(false);
   const handleToggleSidebar = (value) => {
     setToggled(value);
   };
- 
+
   return (
     <>
       <Routes>
@@ -62,176 +62,181 @@ function MainAccessPoint() {
       </Routes>
 
       <div className={`d-flex ${toggled ? "toggled" : ""}`}>
-        {location.pathname !== "/login" && location.pathname !== "/" && (
-          status==="Loginsuccess"  &&  <ApiComponent />
-        )}
-        {location.pathname !== "/login" && location.pathname !== "/" && (
-          <NavBar toggled={toggled} handleToggleSidebar={handleToggleSidebar}>
-            {location.pathname !== "/login" && location.pathname !== "/" && (
-              <TopNav
-                toggled={toggled}
-                handleToggleSidebar={handleToggleSidebar}
-              />
-            )}
-            <Routes>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
+        {location.pathname !== "/login" &&
+          location.pathname !== "/" &&
+          location.pathname !== "/client" &&
+          status === "Loginsuccess" && <ApiComponent />}
+        {location.pathname !== "/login" &&
+          location.pathname !== "/" &&
+          location.pathname !== "/client" && (
+            <NavBar toggled={toggled} handleToggleSidebar={handleToggleSidebar}>
+              {location.pathname !== "/login" &&
+                location.pathname !== "/" &&
+                location.pathname !== "/client" && (
+                  <TopNav
+                    toggled={toggled}
+                    handleToggleSidebar={handleToggleSidebar}
                   />
-                }
-              >
-                {/* Home */}
-                <Route path="/home" element={<Home />} />
-              </Route>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                {/* Product */}
-                <Route path="/product" element={<Product />} />
-              </Route>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addproduct" element={<AddProduct />} />
-              </Route>
-              {/* Catagories */}
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/catagory" element={<Catagories />} />
-              </Route>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/catagory/:id" element={<Items />} />
-              </Route>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addcatagory" element={<AddCatagory />} />
-              </Route>
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addcatagory/:id" element={<AddItems />} />
-              </Route>
+                )}
+              <Routes>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  {/* Home */}
+                  <Route path="/home" element={<Home />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  {/* Product */}
+                  <Route path="/product" element={<Product />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addproduct" element={<AddProduct />} />
+                </Route>
+                {/* Catagories */}
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/catagory" element={<Catagories />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/catagory/:id" element={<Items />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addcatagory" element={<AddCatagory />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addcatagory/:id" element={<AddItems />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/store" element={<Store />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/store" element={<Store />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/assignproduct" element={<AssignProduct />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/assignproduct" element={<AssignProduct />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addassignproduct" element={<AssignAdd />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addassignproduct" element={<AssignAdd />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/assignstore" element={<AssignStore />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/assignstore" element={<AssignStore />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/venders" element={<Vender />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/venders" element={<Vender />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addvender" element={<AddVender />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addvender" element={<AddVender />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/setting" element={<Setting />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/setting" element={<Setting />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/adduser" element={<AddUser />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/adduser" element={<AddUser />} />
+                </Route>
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/billdetail" element={<BillDetail />} />
-              </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/billdetail" element={<BillDetail />} />
+                </Route>
 
-              {/* <Route
+                {/* <Route
             element={
               <PrivateWrapper
                 auth={{ isAuthenticated: localStorage.getItem("auth") }}
@@ -241,88 +246,90 @@ function MainAccessPoint() {
             <Route path="/paybill" element={<PayBill />} />
           </Route> */}
 
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/employeedetail" element={<Employees />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addemployee" element={<AddEmployee />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/employee/:id" element={<EmployeeDetail />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/codedeveloper" element={<MyPage />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addservicetag" element={<AddServiceTag />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/assignsevicetag" element={<AssignTags />} />
+                </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/servicetag/:id" element={<ServiceTag />} />
+                </Route>
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route
+                    path="/servicetagassing/:id"
+                    element={<ServiceTagAssign />}
                   />
-                }
-              >
-                <Route path="/employeedetail" element={<Employees />} />
-              </Route>
-
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addemployee" element={<AddEmployee />} />
-              </Route>
-
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/employee/:id" element={<EmployeeDetail />} />
-              </Route>
-
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/codedeveloper" element={<MyPage />} />
-              </Route>
-
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/addservicetag" element={<AddServiceTag />} />
-              </Route>
-
-              <Route
-                element={
-                  <PrivateWrapper
-                    auth={{ isAuthenticated: localStorage.getItem("auth") }}
-                  />
-                }
-              >
-                <Route path="/assignsevicetag" element={<AssignTags />} />
-              </Route>
-
-              <Route
-            element={
-              <PrivateWrapper
-                auth={{ isAuthenticated: localStorage.getItem("auth") }}
-              />
-            }
-          >
-            <Route path="/servicetag/:id" element={<ServiceTag />} />
-          </Route>
-              <Route
-            element={
-              <PrivateWrapper
-                auth={{ isAuthenticated: localStorage.getItem("auth") }}
-              />
-            }
-          >
-            <Route path="/servicetagassing/:id" element={<ServiceTagAssign />} />
-          </Route>
-
-            </Routes>
-          </NavBar>
-        )}
+                </Route>
+              </Routes>
+            </NavBar>
+          )}
       </div>
     </>
   );

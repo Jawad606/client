@@ -102,20 +102,20 @@ function Home() {
             <RenderCard />
           </div>
         </div>
-        <div className="row  mx-5 ">
-          <div className="col-md-4 p px-1">
+        <div className="row  mx-5 d-flex justify-content-center">
+          <div className="col-md-4 p px-1 mb-2">
             <Chart />
           </div>
-          <div className="col-md ms-4 p">
+          <div className="col-md ms-md-4 p">
             <FindTag />
           </div>
         </div>
         <div className="row px-5 py-4 ">
-          <div className="col-md-6">
+          <div className="col-md-6  p overflow">
             <Link to={"/product"}>
               <h4 className="text-center">Products</h4>
             </Link>
-            <table className="table table-hover  p">
+            <table className="table table-hover ">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -138,11 +138,11 @@ function Home() {
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 ">
+          <div className="col-md-6 p overflow">
             <Link to={"/assignproduct"}>
               <h4 className="text-center">Assign</h4>
             </Link>
-            <table className="table table-hover p ">
+            <table className="table table-hover  ">
               <thead>
                 <tr>
                   <th>ID</th>

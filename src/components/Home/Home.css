@@ -48,6 +48,14 @@ box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
   width: 100%;
 }
 
-.oneBorder{
-  border-left: 1px solid black;
+@media  (max-width: 768px) {
+  .oneBorder{
+    border-top: 1px solid black;
+  }
+}
+
+@media  (min-width: 768px){
+  .oneBorder{
+    border-left: 1px solid black;
+  }
 }

@@ -26,6 +26,7 @@
 .top {
   position: sticky;
   top: 0;
+  z-index:2;
 }
 .topnav h5{
   color: #EFEFEF !important;
