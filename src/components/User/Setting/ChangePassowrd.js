@@ -34,12 +34,12 @@ function ChangePassword(props) {
     return (
       <div className="container w-100 Page-Margin">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <form className="data-from "  onSubmit={HandleSubmit}>
               <span className="data-from-title">Password Change</span>
               {/* Purchaser */}
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-lg-12">
                   <div className="wrap-input1">
                     <input className="input1" type="text" value={oldPassword}   onChange={handleChangeold} placeholder="Old Password" />
                     <span className="shadow-input1"></span>
@@ -47,7 +47,7 @@ function ChangePassword(props) {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-lg-12">
                   <div className="wrap-input1">
                     <input className="input1" type="text" value={newPassword}   onChange={handleChangenew} placeholder="New Password" />
                     <span className="shadow-input1"></span>

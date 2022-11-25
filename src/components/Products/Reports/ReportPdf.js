@@ -20,8 +20,6 @@ function ReportPdf(clientes) {
       { text: cliente.catagory.catagoryName, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.item.itemName, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.quantity, fontSize: 9, margin: [0, 1, 0, 1] },
-      { text: cliente.purchaser, fontSize: 9, margin: [0, 1, 0, 1] },
-      { text: cliente.vender.venderName, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: data, fontSize: 9, margin: [0, 1, 0, 1] },
     ];
   });
@@ -29,15 +27,13 @@ function ReportPdf(clientes) {
     {
       table: {
         headerRows: 1,
-        widths: ["*", "*", "*", "*","*","*","*"],
+        widths: ["*", "*", "*", "*","*"],
         body: [
           [
             { text: "ID", style: "tableHeader", fontSize: 10 },
             { text: "Catagory", style: "tableHeader", fontSize: 10, margin: [0, 1, 0, 1] },
             { text: "Item", style: "tableHeader", fontSize: 10 },
             { text: "Quantity", style: "tableHeader", fontSize: 10 },
-            { text: "Purchaser", style: "tableHeader", fontSize: 10 },
-            { text: "Vender", style: "tableHeader", fontSize: 10 },
             { text: "Date", style: "tableHeader", fontSize: 10 },
           ],
           ...dados,
@@ -52,6 +48,7 @@ function ReportPdf(clientes) {
       {
         text: currentPage + " / " + pageCount,
         alignment: "right",
+       
         fontSize: 9,
         margin: [0, 10, 20, 0], // left, top, right, bottom
       },
@@ -60,8 +57,8 @@ function ReportPdf(clientes) {
 
   const docDefinitios = {
     pageSize: "A4",
-    pageMargins: [15, 50, 15, 40],
-
+    pageMargins: [ 40, 60, 40, 60 ],
+    pageOrientation: 'landscape',
     header: [reportTitle],
     content: [details],
     footer: Rodape,

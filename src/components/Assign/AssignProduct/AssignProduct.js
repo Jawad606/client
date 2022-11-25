@@ -10,6 +10,16 @@ import DeleteAssign from "./DeleteAssign";
 import UpdateAssign from "./UpdateAssign";
 import MailComponent from "../../MailComponent";
 import { Link } from "react-router-dom";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 const RenderShow = () => {
   // useEffect(()=>{
   //   dispatch(fetchAssing())
@@ -29,6 +39,20 @@ const RenderShow = () => {
   const [Modle, setModle] = useState(false);
   const [ModleEdit, setModleEdit] = useState(false);
   const [data, setdata] = useState({});
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, filterData.length - page * rowsPerPage);
+
   const toggle = (
     id,
     catagory,
@@ -74,7 +98,12 @@ const RenderShow = () => {
 
     const Filtered = () => {
       // 2022-04-06
-      if (catagoryID !== "-1" || dateto !== "" || DepatID !== "-1") {
+      if (
+        catagoryID !== "-1" ||
+        dateto !== "" ||
+        DepatID !== "-1" ||
+        itemId !== "-1"
+      ) {
         return assignList.filter(
           // eslint-disable-next-line array-callback-return
           ({ _id, catagory, item, Department, createdAt }) => {
@@ -106,7 +135,7 @@ const RenderShow = () => {
               itemId !== "-1" &&
               DepatID === "-1"
             ) {
-              console.log("if else");
+              console.log(item._id + " " + itemId);
               return catagory._id === catagoryID && item._id === itemId;
             } else if (
               catagoryID !== "-1" &&
@@ -178,16 +207,18 @@ const RenderShow = () => {
     switch (Report) {
       case "1":
         ReportPdf(filterData);
+        setReport("-1");
         break;
       case "2":
         const dataset = filterData.map((item, i) => {
           const date = new Intl.DateTimeFormat("en-US", {
-            dateStyle: "full",
+            dateStyle: "short",
           }).format(new Date(Date.parse(item.createdAt)));
           return {
             id: i,
             Department: item.Department,
             For: item.ItemFor,
+            Issued: item.classRoom,
             Catagory: item.catagory.catagoryName,
             Items: item.item.itemName,
             Quantity: item.quantity,
@@ -195,6 +226,7 @@ const RenderShow = () => {
           };
         });
         JSONTOCSV(dataset, "IMSCIU.csv");
+        setReport("-1");
         // csvDownload(dataset)
         break;
       default:
@@ -211,97 +243,137 @@ const RenderShow = () => {
       </tr>
     );
   } else {
-    const renderList = filterData.map(function (
-      {
-        _id,
-        Department,
-        ItemFor,
-        catagory,
-        item,
-        quantity,
-        classRoom,
-        createdAt,
-        employee,
-        returnItem,
-        returnQuantity,
-      },
-      i
-    ) {
+    const RenderTable = () => {
+      const reversed = [...filterData].reverse();
       return (
-        <tr key={i}>
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="center">Depart</TableCell>
+                <TableCell align="center">For</TableCell>
+                <TableCell align="center">Issued to</TableCell>
+                <TableCell align="center">Catagory</TableCell>
+                <TableCell align="center">Item</TableCell>
+                <TableCell align="center">Quantity</TableCell>
+                <TableCell align="center">Employee</TableCell>
+                <TableCell align="center">Re-Item</TableCell>
+                <TableCell align="center">Re-Quantity</TableCell>
+                <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {reversed
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell scope="row">{index}</TableCell>
 
-          <td>{i}</td>
-          <td>
-              <Link
-                className="Remove"
-                to={{
-                  pathname: `/servicetagassing/${_id}`,
-                }}
-                params={{ id: _id }}
-              >
-                  {Department}
-              </Link>{" "}
-            </td>
-        
-          <td>{ItemFor}</td>
-          <td>{classRoom}</td>
-          <td>{catagory.catagoryName}</td>
-          <td>{item.itemName}</td>
-          <td>{quantity}</td>
-          <td>{employee.employeeName}</td>
-          <td>{returnItem}</td>
-          <td>{returnQuantity}</td>
-          <td>
-            {new Intl.DateTimeFormat("en-US", {
-              dateStyle: "full",
-            }).format(new Date(Date.parse(createdAt)))}
-          </td>
-          <div className="cellAction">
-            <div
-              className="viewButton"
-              onClick={() => {
-                toggleEdit(
-                  _id,
-                  catagory._id,
-                  item._id,
-                  quantity,
-                  Department,
-                  ItemFor
-                );
-              }}
-            >
-              Eidt
-            </div>
-            <div
-              className="deleteButton"
-              onClick={() => {
-                toggle(
-                  _id,
-                  catagory._id,
-                  item._id,
-                  quantity,
-                  Department,
-                  ItemFor
-                );
-              }}
-            >
-              Delete
-            </div>
-          </div>
-        </tr>
+                    <TableCell align="center">
+                      <Link
+                        className="Remove"
+                        to={{
+                          pathname: `/servicetagassing/${row._id}`,
+                        }}
+                        params={{ id: row._id }}
+                      >
+                        {row.Department}
+                      </Link>{" "}
+                    </TableCell>
+                    <TableCell align="center">{row.ItemFor}</TableCell>
+                    <TableCell align="center">{row.classRoom}</TableCell>
+                    <TableCell align="center">
+                      {row.catagory.catagoryName}
+                    </TableCell>
+                    <TableCell align="center">{row.item.itemName}</TableCell>
+                    <TableCell align="center">{row.quantity}</TableCell>
+                    <TableCell align="center">
+                      {row.employee.employeeName}
+                    </TableCell>
+                    <TableCell align="center">{row.returnItem}</TableCell>
+                    <TableCell align="center">{row.returnQuantity}</TableCell>
+                    <TableCell align="center">
+                      {" "}
+                      {new Intl.DateTimeFormat("en-US", {
+                        dateStyle: "short",
+                      }).format(new Date(Date.parse(row.createdAt)))}
+                    </TableCell>
+                    <TableCell align="center">
+                      <div className="cellAction">
+                        <div
+                          className="viewButton"
+                          onClick={() => {
+                            toggleEdit(
+                              row._id,
+                              row.catagory._id,
+                              row.item._id,
+                              row.quantity,
+                              row.Department,
+                              row.ItemFor
+                            );
+                          }}
+                        >
+                          Eidt
+                        </div>
+                        <div
+                          className="deleteButton"
+                          onClick={() => {
+                            toggle(
+                              row._id,
+                              row.catagory._id,
+                              row.item._id,
+                              row.quantity,
+                              row.Department,
+                              row.ItemFor
+                            );
+                          }}
+                        >
+                          Delete
+                        </div>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={filterData.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </TableContainer>
       );
-    });
+    };
     return (
       <>
         {Report === "3" && <MailComponent />}
-        <div className="row d-flex justify-content-end">
+        <div className="row d-flex justify-content-end w-100">
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setfilter(!filter);
             }}
           >
             <p className="tool">Filter</p>
+          </div>
+          <div
+            className=" col-lg-1 acbtn"
+            onClick={() => {
+              setexportas(!exportas);
+            }}
+          >
+            <p className="tool">Export</p>
           </div>
         </div>
         {/* Filters */}
@@ -310,56 +382,40 @@ const RenderShow = () => {
             filter ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-2 m-0 py-2">
-            <div className="wrap-input1 m-0">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    value={catagoryID}
-                    onChange={(e) => setcatagoryID(e.target.value)}
-                    className="input1"
-                    name="Catagory"
-                    id=""
-                  >
-                    <option value="-1">Catagory</option>
-                    {catagoryList.map((data, i) => (
-                      <option key={i} value={data._id}>
-                        {data.catagoryName}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+         <div className="col-lg-2 ">
+            <Autocomplete
+              onChange={(event, value, reason) =>
+                reason==='clear' ? setcatagoryID('-1') : setcatagoryID(value._id)
+              }
+              clearOnEscape
+              className="input1"
+              id="combo-box-demo"
+              options={catagoryList}
+              // sx={{ width: 300 }}
+              getOptionLabel={(option) => option.catagoryName.toString()}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Catagory" />
+              )}
+            />
           </div>
-          <div className="col-md-2 col-sm-12">
-            <div className="wrap-input1 m-0">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    className="input1"
-                    name="item"
-                    value={itemId}
-                    onChange={(e) => setitemId(e.target.value)}
-                  >
-                    <option value="-1">Item</option>
-                    {itemList
-                      .filter((sHowItem) => sHowItem.catId._id === catagoryID)
-                      .map((data, i) => {
-                        return (
-                          <option key={i} value={data._id}>
-                            {data.itemName}
-                          </option>
-                        );
-                      })}
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+          <div className="col-lg-2 ">
+            <Autocomplete
+              onChange={(event, value,reason) => 
+                reason==='clear' ? setitemId('-1') : setitemId(value._id)
+                }
+              disablePortal
+              className="input1"
+              id="combo-box-demo"
+              options={itemList.filter(
+                (sHowItem) => sHowItem.catId._id === catagoryID
+              )}
+              getOptionLabel={(option) => option.itemName.toString()}
+              renderInput={(params) => (
+                <TextField {...params} label="Select Item" />
+              )}
+            />
           </div>
-          <div className="col-md-2 col-sm-12">
+          <div className="col-lg-2 col-sm-12">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -381,8 +437,8 @@ const RenderShow = () => {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-1">To</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">from</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -396,8 +452,8 @@ const RenderShow = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-1">From</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">to</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -413,30 +469,23 @@ const RenderShow = () => {
           </div>
         </div>
         {/* Exports */}
+
+        {/* Exports */}
         <div
           className={`row d-flex align-items-center py-2 ${
             exportas ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-12 col-sm-12">
-            <div className="wrap-input1">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    className="input1"
-                    name="item"
-                    value={Report}
-                    onChange={(e) => setReport(e.target.value)}
-                  >
-                    <option value="-1">Report</option>
-                    <option value="1">PDF</option>
-                    <option value="2">CSV</option>
-                    <option value="3">Email</option>
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+          <div className="col-lg-12 col-sm-12">
+            <Button className="mx-2" onClick={() => setReport("1")}>
+              PDF
+            </Button>
+            <Button className="mx-2" onClick={() => setReport("2")}>
+              CSV
+            </Button>
+            <Button className="mx-2" onClick={() => setReport("3")}>
+              EMAIL
+            </Button>
           </div>
         </div>
         <Modal
@@ -470,26 +519,8 @@ const RenderShow = () => {
           <ModalFooter></ModalFooter>
         </Modal>
         <div className="row w-100">
-          <div className="p d-flex align-items-center justify-content-md-center justify-content-sm-start">
-            <table className="table table-hover rounded ">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Depart</th>
-                  <th>For</th>
-                  <th>ClasRoom</th>
-                  <th>Catagory</th>
-                  <th>Item</th>
-                  <th>Quantity</th>
-                  <th>Employee</th>
-                  <th>Re-Item</th>
-                  <th>Re-Quantity</th>
-                  <th>Date</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>{renderList}</tbody>
-            </table>
+          <div className="p justify-content-lg-center justify-content-sm-start">
+            <RenderTable />
           </div>
         </div>
       </>

@@ -20,9 +20,10 @@ function ReportPdf(clientes) {
     return [
       { text: i, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.catagory.catagoryName, fontSize: 9, margin: [0, 1, 0, 1] },
+      { text: cliente.item.itemName, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.Department, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.ItemFor, fontSize: 9, margin: [0, 1, 0, 1] },
-      { text: cliente.item.itemName, fontSize: 9, margin: [0, 1, 0, 1] },
+      { text: cliente.classRoom, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: cliente.quantity, fontSize: 9, margin: [0, 1, 0, 1] },
       { text: data, fontSize: 9, margin: [0, 1, 0, 1] },
     ];
@@ -31,14 +32,15 @@ function ReportPdf(clientes) {
     {
       table: {
         headerRows: 1,
-        widths: ["*", "*", "*", "*","*","*","*"],
+        widths: ["*", "*", "*", "*","*","*","*","*"],
         body: [
           [
             { text: "ID", style: "tableHeader", fontSize: 10 },
-            { text: "Department", style: "tableHeader", fontSize: 10 },
-            { text: "For", style: "tableHeader", fontSize: 10 },
             { text: "Catagory", style: "tableHeader", fontSize: 10, margin: [0, 1, 0, 1] },
             { text: "Item", style: "tableHeader", fontSize: 10 },
+            { text: "Department", style: "tableHeader", fontSize: 10 },
+            { text: "For", style: "tableHeader", fontSize: 10 },
+            { text: "Issued", style: "tableHeader", fontSize: 10 },
             { text: "Quantity", style: "tableHeader", fontSize: 10 },
             { text: "Date", style: "tableHeader", fontSize: 10 },
           ],
@@ -62,8 +64,8 @@ function ReportPdf(clientes) {
 
   const docDefinitios = {
     pageSize: "A4",
-    pageMargins: [15, 50, 15, 40],
-
+    pageMargins: [ 40, 60, 40, 60 ],
+    pageOrientation: 'landscape',
     header: [reportTitle],
     content: [details],
     footer: Rodape,

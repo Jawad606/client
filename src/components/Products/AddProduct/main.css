@@ -215,7 +215,7 @@ select option {
 input.input1,
 select.input1 {
   height: 50px;
-  border-radius: 25px;
+  border-radius: 8px;
   padding: 0 30px;
 }
 input.input1 + .shadow-input1,

@@ -37,7 +37,7 @@ function RenderAssignChair() {
   let total=0
 const data=  countCata.map((data, i) => {
     return  ( 
-        <div className="col-md-4 p-4" key={i}>
+        <div className="col-lg-4 p-4" key={i}>
     <Card>
       <CardHeader tag="h3">{data.item.itemName}</CardHeader>
       <CardBody>
@@ -55,7 +55,7 @@ function HomeComponent() {
     <div>
       <div className="container">
         <div className="row  d-flex justify-content-center ">
-          <div className="col-md-4 p-4">
+          <div className="col-lg-4 p-4">
             <Card>
               <CardHeader tag="h3">Catagoies</CardHeader>
               <CardBody>
@@ -65,7 +65,7 @@ function HomeComponent() {
               </CardBody>
             </Card>
           </div>
-          <div className="col-md-4 p-4">
+          <div className="col-lg-4 p-4">
             <Card>
               <CardHeader tag="h3">Products</CardHeader>
               <CardBody>

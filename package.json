@@ -6,6 +6,10 @@
   "proxy": "https://university-backend-app.herokuapp.com/",
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.10.9",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -17,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "fontawesome": "^5.6.3",
     "json-to-csv-export": "^1.1.0",
+    "material-react-table": "^1.2.9",
     "node-sass": "^7.0.1",
     "papaparse": "^5.3.2",
     "pdfmake": "^0.2.5",

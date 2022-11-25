@@ -6,6 +6,7 @@ import { showPaybill } from '../../../features/paybillSlice';
 import MailComponent from '../../MailComponent';
 import { JSONTOCSV } from '../../ReportsCSV/ReportCSV';
 import ReportPdf from '../../Store/ReportPDF';
+import { Button } from "reactstrap";
 function BillDetail() {
   const { paybillList } = useSelector(showPaybill);
   const [filterData, setfilterData] = useState(paybillList);
@@ -100,7 +101,7 @@ function BillDetail() {
       case "2":
         const dataset = filterData.map((item, i) => {
           const date = new Intl.DateTimeFormat("en-US", {
-            dateStyle: "full",
+           dateStyle: "short",
           }).format(new Date(Date.parse(item.createdAt)));
           return {
             id: i,
@@ -135,7 +136,7 @@ function BillDetail() {
         <td>{venderName}</td>
         <td>
           {new Intl.DateTimeFormat("en-US", {
-            dateStyle: "full",
+           dateStyle: "short",
           }).format(new Date(Date.parse(createdAt)))}
         </td>
       </tr>
@@ -147,7 +148,7 @@ function BillDetail() {
       <div className="container">
         <div className="row px-5 d-flex justify-content-end">
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setfilter(!filter);
             }}
@@ -155,7 +156,7 @@ function BillDetail() {
             <p className="tool">Filter</p>
           </div>
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setexportas(!exportas);
             }}
@@ -168,7 +169,7 @@ function BillDetail() {
           } `}
         >
 
-          <div className="col-md-3 m-0 py-2">
+          <div className="col-lg-3 m-0 py-2">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -191,7 +192,7 @@ function BillDetail() {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-3 col-sm-12">
+          <div className="col-lg-3 col-sm-12">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -217,8 +218,8 @@ function BillDetail() {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-1 text-end">To</div>
-          <div className="col-md-2 p-0 px-1">
+          <div className="col-lg-1 text-center">From</div>
+          <div className="col-lg-2 p-0 px-1">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -232,8 +233,8 @@ function BillDetail() {
               </div>
             </div>
           </div>
-          <div className="col-md-1 text-end">From</div>
-          <div className="col-md-2 p-0 px-1">
+          <div className="col-lg-1 text-center">to</div>
+          <div className="col-lg-2 p-0 px-1">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -253,30 +254,15 @@ function BillDetail() {
             exportas ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-12 col-sm-12">
-            <div className="wrap-input1">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    className="input1"
-                    name="item"
-                    value={Report}
-                    onChange={(e) => setReport(e.target.value)}
-                  >
-                    <option value="-1">Select Report</option>
-                    <option value="1">PDF</option>
-                    <option value="2">CSV</option>
-                    <option value="3">Email</option>
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+          <div className="col-lg-12 col-sm-12">
+          <Button className="mx-2" onClick={() =>setReport('1')}>PDF</Button>
+          <Button className="mx-2" onClick={() =>setReport('2')}>CSV</Button>
+          <Button className="mx-2" onClick={() =>setReport('3')}>EMAIL</Button>
           </div>
         </div>
         <div className="row">
         <div className=" d-flex justify-content-center">
-          <div className=" s w-90  p justify-content-md-center justify-content-sm-start">
+          <div className=" s w-90  p justify-content-lg-center justify-content-sm-start">
             <table className="table table-hover rounded">
               <thead>
                 <tr>

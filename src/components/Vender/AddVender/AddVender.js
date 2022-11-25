@@ -104,17 +104,17 @@ function AddVender() {
   return (
     <div className="container w-100 Page-Margin">
       <div className="row d-flex justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <form className="data-from " onSubmit={HandleSubmit}>
             <span className="data-from-title">Add Vender</span>
              {/* Catagoy and item */}
              <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Catagory</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     {" "}
                     <div className="wrap-input1">
                       <div className="selectdiv">
@@ -141,12 +141,12 @@ function AddVender() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-lg-6 col-sm-12">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Item</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     {" "}
                     <div className="wrap-input1">
                       <div className="selectdiv">
@@ -180,12 +180,12 @@ function AddVender() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Name</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
@@ -200,12 +200,12 @@ function AddVender() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Email</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
@@ -222,12 +222,12 @@ function AddVender() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Phone No</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
@@ -242,12 +242,12 @@ function AddVender() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>CNIC</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
@@ -264,12 +264,12 @@ function AddVender() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>City</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
@@ -284,12 +284,12 @@ function AddVender() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Image</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     {" "}
                     <div className="wrap-input1">
                       <input
@@ -307,12 +307,12 @@ function AddVender() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-lg-12">
                 <div className="row">
-                  <div className="col-md-2 py-1 px-2">
+                  <div className="col-lg-2 py-1 px-2">
                     <h5>Address</h5>
                   </div>
-                  <div className="col-md-10">
+                  <div className="col-lg-10">
                     {" "}
                     <div className="wrap-input1">
                       <input

@@ -189,7 +189,7 @@ const RenderShow = () => {
               <td>{item.itemName}</td>
               <td>
                 {new Intl.DateTimeFormat("en-US", {
-                  dateStyle: "full",
+                 dateStyle: "short",
                 }).format(new Date(Date.parse(createdAt)))}
               </td>
               <td>
@@ -207,7 +207,7 @@ const RenderShow = () => {
         {Report === '3'&& <MailComponent /> }
         <div className="row d-flex justify-content-end">
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setfilter(!filter);
             }}
@@ -215,14 +215,14 @@ const RenderShow = () => {
             <p className="tool">Filter</p>
           </div>
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setexportas(!exportas);
             }}
           >
             <p className="tool">Export</p>
           </div>
-          <div className="  col-md-2">
+          <div className="  col-lg-2 acbtn">
           <Link to={'/addvender'}><p className="tool">Add Vender</p></Link>
           </div>
         </div>
@@ -232,7 +232,7 @@ const RenderShow = () => {
             filter ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-3 m-0 py-2">
+          <div className="col-lg-3 m-0 py-2">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -255,7 +255,7 @@ const RenderShow = () => {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-3 col-sm-12">
+          <div className="col-lg-3 col-sm-12">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -281,8 +281,8 @@ const RenderShow = () => {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-1">To</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">From</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -296,8 +296,8 @@ const RenderShow = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-1">From</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">to</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -318,25 +318,10 @@ const RenderShow = () => {
             exportas ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-12 col-sm-12">
-            <div className="wrap-input1">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    className="input1"
-                    name="item"
-                    value={Report}
-                    onChange={(e) => setReport(e.target.value)}
-                  >
-                    <option value="-1">Select Report</option>
-                    <option value="1">PDF</option>
-                    <option value="2">CSV</option>
-                    <option value="3">Email</option>
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+          <div className="col-lg-12 col-sm-12">
+          <Button className="mx-2" onClick={() =>setReport('1')}>PDF</Button>
+          <Button className="mx-2" onClick={() =>setReport('2')}>CSV</Button>
+          <Button className="mx-2" onClick={() =>setReport('3')}>EMAIL</Button>
           </div>
         </div>
 
@@ -376,7 +361,7 @@ const RenderShow = () => {
         
           </ModalFooter>
         </Modal>
-        <div className="p d-flex justify-content-md-center justify-content-sm-start">
+        <div className="p  justify-content-lg-center justify-content-sm-start">
           <table className="table table-hover rounded ">
             <thead>
               <tr>

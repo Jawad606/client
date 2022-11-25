@@ -1,7 +1,7 @@
-.box-shodow{
-  -webkit-box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
--moz-box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
-box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
+.box-shodow {
+  -webkit-box-shadow: -1px 1px 36px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 36px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 1px 36px 0px rgba(0, 0, 0, 0.75);
 }
 .featured {
   width: 100%;
@@ -48,14 +48,14 @@ box-shadow: -1px 1px 36px 0px rgba(0,0,0,0.75);
   width: 100%;
 }
 
-@media  (max-width: 768px) {
-  .oneBorder{
+@media (max-width: 768px) {
+  .oneBorder {
     border-top: 1px solid black;
   }
 }
 
-@media  (min-width: 768px){
-  .oneBorder{
+@media (min-width: 768px) {
+  .oneBorder {
     border-left: 1px solid black;
   }
 }

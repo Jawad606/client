@@ -74,7 +74,7 @@ const NavBar = ({ rtl, toggled, handleToggleSidebar, children },i) => {
         toggled={toggled}
         breakPoint="md"
         onToggle={handleToggleSidebar}
-        className={"pro-sidebar top"}
+        className={"pro-sidebar  onTop"}
       >
         <SidebarHeader>
           <div

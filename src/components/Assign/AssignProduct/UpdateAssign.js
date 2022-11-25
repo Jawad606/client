@@ -104,12 +104,12 @@ function UpdateAssign(props) {
   return (
     <div className="container w-100 Page-Margin">
       <div className="row d-flex justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           {props.data.Department}
           <form className="data-from " onSubmit={HandleSubmit}>
             {/* Catagoy and item */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -133,7 +133,7 @@ function UpdateAssign(props) {
                   <span className="shadow-input1"></span>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-lg-6 col-sm-12">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -165,7 +165,7 @@ function UpdateAssign(props) {
             </div>
             {/* Qunatity and Vender */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <input
                     min={0}
@@ -179,7 +179,7 @@ function UpdateAssign(props) {
                   <span className="shadow-input1"></span>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <input
                     type="text"
@@ -194,7 +194,7 @@ function UpdateAssign(props) {
             </div>
             {/* Purchaser */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -215,7 +215,7 @@ function UpdateAssign(props) {
                   <span className="shadow-input1"></span>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>

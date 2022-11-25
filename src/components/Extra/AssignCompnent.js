@@ -20,7 +20,7 @@
 //           <td>{assigner}</td>
 //           <td>
 //             {new Intl.DateTimeFormat("en-US", {
-//               dateStyle: "full",
+//              dateStyle: "short",
 //               timeStyle: "short",
 //             }).format(new Date(Date.parse(createdAt)))}
 //           </td>

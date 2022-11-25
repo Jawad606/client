@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { showCatagory } from "../../../features/catagorySlice";
 import { JSONTOCSV } from "../../ReportsCSV/ReportCSV";
 import ReportPdf from "./ReportsPDF/ReportPdf";
 import UpdateCatagory from "./UpdateCatagory";
 import DeleteCatagory from "./DeleteCatagory";
 import MailComponent from "../../MailComponent";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
+import Paper from "@material-ui/core/Paper";
+
 const RenderShow = () => {
   const [ModleEdit, setModleEdit] = useState(false);
   const [ModleDelete, setModleDelete] = useState(false);
@@ -19,12 +28,12 @@ const RenderShow = () => {
   const [filter, setfilter] = useState(false);
   const [exportas, setexportas] = useState(false);
   const [Report, setReport] = useState("");
-  const [data, setdata] = useState({})
+  const [data, setdata] = useState({});
 
-  const toggleEdit = (id,catagoryName) => {
+  const toggleEdit = (id, catagoryName) => {
     setdata({
       id: id,
-      catagoryName:catagoryName
+      catagoryName: catagoryName,
     });
     setModleEdit(!ModleEdit);
   };
@@ -34,6 +43,18 @@ const RenderShow = () => {
     });
     setModleDelete(!ModleDelete);
   };
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, filterData.length - page * rowsPerPage);
 
   useEffect(() => {
     var datefromInput = "";
@@ -104,7 +125,7 @@ const RenderShow = () => {
       case "2":
         const dataset = filterData.map((item, i) => {
           const date = new Intl.DateTimeFormat("en-US", {
-            dateStyle: "full",
+           dateStyle: "short",
           }).format(new Date(Date.parse(item.createdAt)));
           return {
             id: i,
@@ -129,50 +150,88 @@ const RenderShow = () => {
       </tr>
     );
   } else {
-    const renderList = filterData.map((item, i) => {
+    const RenderTable = () => {
       return (
-        <tr key={i}>
-          <td>{i}</td>{" "}
-          <td>
-            {" "}
-            <Link
-              to={{
-                pathname: `/catagory/${item._id}`,
-              }}
-              params={{ id: item._id, catagory: item.catagoryName }}
-            >
-              {item.catagoryName}{" "}
-            </Link>{" "}
-          </td>
-          <td>
-            {new Intl.DateTimeFormat("en-US", {
-              dateStyle: "full",
-            }).format(new Date(Date.parse(item.createdAt)))}
-          </td>
-          <div className="cellAction">
-            <div
-              className="viewButton"
-              onClick={() => {
-                toggleEdit(item._id,item.catagoryName)
-              }}
-            >
-              Eidt
-            </div>
-            <div
-              className="deleteButton"
-              onClick={() => {
-                toggleDelete(item._id)
-              }}
-            >
-              Delete
-            </div>
-          </div>
-        </tr>
+        <TableContainer component={Paper}>
+          <Table stickyHeader aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="center">Catagory</TableCell>
+                <TableCell align="center">Date</TableCell>
+                <TableCell align="center">Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filterData
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((items, i) => (
+                  <TableRow key={items._id}>
+                    <TableCell align="center">{i}</TableCell>
+                    <TableCell align="center">
+                      {
+                        <Link
+                          to={{
+                            pathname: `/items/${items._id}`,
+                          }}
+                          params={{
+                            id: items._id,
+                            catagory: items.catagoryName,
+                          }}
+                        >
+                          {items.catagoryName}
+                        </Link>
+                      }{" "}
+                    </TableCell>
+                    <TableCell align="center">
+                      {new Intl.DateTimeFormat("en-US", {
+                       dateStyle: "short",
+                      }).format(new Date(Date.parse(items.createdAt)))}
+                    </TableCell>
+                    <TableCell align="center">
+                      <div className="cellAction">
+                        <div
+                          className="viewButton"
+                          onClick={() => {
+                            toggleEdit(items._id, items.catagoryName);
+                          }}
+                        >
+                          Eidt
+                        </div>
+                        <div
+                          className="deleteButton"
+                          onClick={() => {
+                            toggleDelete(items._id);
+                          }}
+                        >
+                          Delete
+                        </div>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={filterData.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </TableContainer>
       );
-    });
+    };
     return (
       <>
-    {Report === '3'&& <MailComponent /> }
+        {Report === "3" && <MailComponent />}
         <Modal
           centered
           fullscreen="sm"
@@ -182,12 +241,11 @@ const RenderShow = () => {
         >
           <ModalHeader>Delete</ModalHeader>
           <ModalBody>
-            <DeleteCatagory data={data} >
-            <Button onClick={() => toggleDelete()}>Cancel</Button>
+            <DeleteCatagory data={data}>
+              <Button onClick={() => toggleDelete()}>Cancel</Button>
             </DeleteCatagory>
           </ModalBody>
-          <ModalFooter>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </Modal>
 
         <Modal
@@ -199,7 +257,7 @@ const RenderShow = () => {
         >
           <ModalHeader>Update the Record</ModalHeader>
           <ModalBody>
-            <UpdateCatagory data={data}/>
+            <UpdateCatagory data={data} />
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => toggleEdit()}>Cancel</Button>
@@ -207,7 +265,7 @@ const RenderShow = () => {
         </Modal>
         <div className="row d-flex justify-content-end">
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setfilter(!filter);
             }}
@@ -215,15 +273,17 @@ const RenderShow = () => {
             <p className="tool">Filter</p>
           </div>
           <div
-            className=" col-md-1"
+            className=" col-lg-1 acbtn"
             onClick={() => {
               setexportas(!exportas);
             }}
           >
             <p className="tool">Export</p>
           </div>
-          <div className="  col-md-2">
-          <Link to={'/addcatagory'}><p className="tool">Add Catagory</p></Link>
+          <div className="  col-lg-2 acbtn">
+            <Link to={"/addcatagory"}>
+              <p className="tool">Add Catagory</p>
+            </Link>
           </div>
         </div>
         <div
@@ -231,7 +291,7 @@ const RenderShow = () => {
             filter ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-3 m-0 py-2">
+          <div className="col-lg-3 m-0 py-2">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -254,8 +314,8 @@ const RenderShow = () => {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-1 text-end">To</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">From</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -269,8 +329,8 @@ const RenderShow = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-1 text-end">From</div>
-          <div className="col-md-2 p-0 px-2">
+          <div className="col-lg-1 text-center">to</div>
+          <div className="col-lg-2 p-0 px-2">
             <div className="container-data-from-btn">
               <div className="wrap-input1 m-0">
                 <input
@@ -290,29 +350,15 @@ const RenderShow = () => {
             exportas ? "d-block" : "d-none"
           } `}
         >
-          <div className="col-md-12 col-sm-12">
-            <div className="wrap-input1">
-              <div className="selectdiv">
-                <label>
-                  <select
-                    className="input1"
-                    name="item"
-                    value={Report}
-                    onChange={(e) => setReport(e.target.value)}
-                  >
-                    <option value="-1">Select Report</option>
-                    <option value="1">PDF</option>
-                    <option value="2">CSV</option>
-                    <option value="3">Email</option>
-                  </select>
-                </label>
-              </div>
-              <span className="shadow-input1"></span>
-            </div>
+          <div className="col-lg-12 col-sm-12">
+          <Button className="mx-2" onClick={() =>setReport('1')}>PDF</Button>
+          <Button className="mx-2" onClick={() =>setReport('2')}>CSV</Button>
+          <Button className="mx-2" onClick={() =>setReport('3')}>EMAIL</Button>
           </div>
         </div>
-        <div className=" p justify-content-md-center justify-content-sm-start">
-          <table className="table table-hover rounded ">
+        <div className=" p justify-content-lg-center justify-content-sm-start">
+          <RenderTable />
+          {/* <table className="table table-hover rounded ">
             <thead>
               <tr>
                 <th>ID</th>
@@ -322,7 +368,7 @@ const RenderShow = () => {
               </tr>
             </thead>
             <tbody>{renderList}</tbody>
-          </table>
+          </table> */}
         </div>
       </>
     );

@@ -16,7 +16,6 @@ const RenderCard = () => {
   const { catagoryList } = useSelector(showCatagory);
   const { itemList } = useSelector(showItem);
 
-
   const CatagoryTotal = () => {
     var total = 0;
     catagoryList.map((data, i) => {
@@ -36,7 +35,7 @@ const RenderCard = () => {
       <div className="featured container d-flex justify-content-center py-3">
         <div className="row width d-flex justify-content-center">
           <>
-            <div className="featuredItem col-md-5 col-sm-12">
+            <div className="featuredItem col-lg-5 col-sm-12">
               <span className="featuredTitle">Catagories</span>
               <div className="featuredMoneyContainer d-flex justify-content-center">
                 <span className="featuredMoney ">{CatagoryTotal()}</span>
@@ -44,7 +43,7 @@ const RenderCard = () => {
               <span className="featuredSub">Total catagories</span>
             </div>
           </>
-          <div className="featuredItem col-md-5 col-sm-12">
+          <div className="featuredItem col-lg-5 col-sm-12">
             <span className="featuredTitle">Items</span>
             <div className="featuredMoneyContainer d-flex justify-content-center">
               <span className="featuredMoney">{ItemTotal()}</span>
@@ -61,7 +60,8 @@ function Home() {
   const { assignList } = useSelector(showAssign);
   const [filterData, setfilterData] = useState([]);
   const [filterDataAssign, setfilterDataAssign] = useState([]);
-  const {  status } = useSelector(showUser);
+  const { status } = useSelector(showUser);
+
   useEffect(() => {
     const filter = () => {
       return universityList.filter(({ createdAt }) => {
@@ -71,7 +71,6 @@ function Home() {
         let today = new Date().toLocaleDateString("en-US", {
           dateStyle: "short",
         });
-        console.log(dateCreated + "  " + today);
         return dateCreated === today;
       });
     };
@@ -87,7 +86,6 @@ function Home() {
         let today = new Date().toLocaleDateString("en-US", {
           dateStyle: "short",
         });
-        console.log(dateCreated + "  " + today);
         return dateCreated === today;
       });
     };
@@ -98,20 +96,20 @@ function Home() {
       {status === "LoadingLogin" && <IsLoading />}
       <div className="container w-100 Page-Margin ">
         <div className="row">
-          <div className="col-md-12 text-center">
+          <div className="col-lg-12 text-center">
             <RenderCard />
           </div>
         </div>
         <div className="row  mx-5 d-flex justify-content-center">
-          <div className="col-md-4 p px-1 mb-2">
+          <div className="col-lg-4 p px-1 mb-2">
             <Chart />
           </div>
-          <div className="col-md ms-md-4 p">
+          <div className="col-md ms-lg-4 p">
             <FindTag />
           </div>
         </div>
         <div className="row px-5 py-4 ">
-          <div className="col-md-6  p overflow">
+          <div className="col-lg-6  p overflow">
             <Link to={"/product"}>
               <h4 className="text-center">Products</h4>
             </Link>
@@ -138,7 +136,7 @@ function Home() {
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 p overflow">
+          <div className="col-lg-6 p overflow">
             <Link to={"/assignproduct"}>
               <h4 className="text-center">Assign</h4>
             </Link>

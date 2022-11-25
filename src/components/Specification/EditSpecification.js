@@ -48,12 +48,12 @@ function EditSpecification(props) {
         <ModalBody>
           <div className="container">
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row ">
-                  <div className="col-md-4 py-1 text-start px-2">
+                  <div className="col-lg-4 py-1 text-start px-2">
                     <h5>Catagory</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <div className="selectdiv">
                         <label>
@@ -79,12 +79,12 @@ function EditSpecification(props) {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-lg-6 col-sm-12">
                 <div className="row">
-                  <div className="col-md-4 py-1 text-start px-2">
+                  <div className="col-lg-4 py-1 text-start px-2">
                     <h5>Items</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     {" "}
                     <div className="wrap-input1">
                       <div className="selectdiv">
@@ -118,12 +118,12 @@ function EditSpecification(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-lg-12">
                 <div className="row">
-                  <div className="col-md-4 py-1 text-start px-2">
+                  <div className="col-lg-4 py-1 text-start px-2">
                     <h5>Predefine Name</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     {" "}
                     <div className="wrap-input1">
                       <input
@@ -143,12 +143,12 @@ function EditSpecification(props) {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-lg-12">
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-lg-4">
                     <h5>Specification</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <textarea
                       className="input1"
                       name=""

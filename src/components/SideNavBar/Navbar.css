@@ -2,6 +2,7 @@
   height: 100vh !important;
   /* color: rgb(57, 57, 57); */
   padding: 10px;
+
 }
 .pro-sidebar > .pro-sidebar-inner {
   /* background-color: rgb(228, 228, 250); */
@@ -36,4 +37,9 @@
 .pro-sidebar .pro-menu a{
   color: transparent;
   color: #EFEFEF;
+}
+.onTop{
+  position: sticky !important;
+  top: 0;
+  z-index: 3;
 }

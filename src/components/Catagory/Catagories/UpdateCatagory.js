@@ -17,12 +17,12 @@ function UpdateCatagory(props) {
   return (
     <div className="container w-100 Page-Margin">
     <div className="row d-flex justify-content-center">
-      <div className="col-md-8">
+      <div className="col-lg-8">
         <form className="data-from " onSubmit={HandleSubmit}>
           <span className="data-from-title">Update Catagory</span> 
           {/* Purchaser */}
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-lg-6">
               <div className="wrap-input1">
                 <input
                   className="input1"

@@ -45,7 +45,7 @@ function MailComponent() {
           <form ref={form} onSubmit={sendEmail}>
             <div className="container">
               <div className="row">
-                <div className="col-md-12 py-3">
+                <div className="col-lg-12 py-3">
                   <label>Name</label>
                   <input
                     className="input1"
@@ -54,7 +54,7 @@ function MailComponent() {
                     name="user_name"
                   />
                 </div>
-                <div className="col-md-12 py-3">
+                <div className="col-lg-12 py-3">
                   <label>Email</label>
                   <input
                     className="input1"
@@ -63,7 +63,7 @@ function MailComponent() {
                     name="user_email"
                   />
                 </div>
-                  <div className="col-md-12 py-3">
+                  <div className="col-lg-12 py-3">
                   <label>Subjet</label>
                   <input
                     type={'text'}
@@ -72,7 +72,7 @@ function MailComponent() {
                     name="subject"
                   />
                 </div>
-                <div className="col-md-12 py-3">
+                <div className="col-lg-12 py-3">
                   <label>Message</label>
                   <textarea
                     className="input1"
@@ -81,7 +81,7 @@ function MailComponent() {
                   />
                 </div>
                
-                <div className="col-md-12 py-3 d-flex justify-content-center">
+                <div className="col-lg-12 py-3 d-flex justify-content-center">
                   <input className="data-from-btn" type="submit" value="Send" />
                 </div>
               </div>

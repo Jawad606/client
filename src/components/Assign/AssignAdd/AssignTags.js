@@ -17,6 +17,7 @@ function AssignTags() {
       )
       .map((item) => item)
   );
+
   const dispatch = useDispatch();
   const [checkArray, setCheckarray] = useState(
     new Array(
@@ -65,15 +66,16 @@ function AssignTags() {
       checkArray.filter((item, i) => checkArray[i] !== true).map((item) => item)
     );
   };
-
+  const arrayLength=checkArray.filter((item, i) => checkArray[i] !== false).length
+  console.log(location.state.quantity,arrayLength)
   return (
     <div>
       <h3 className="text-center mb-4">Assign Order Detail</h3>
       <div className="container">
         <div className="row  d-flex justify-content-center">
-          <div className="col-md-10">
+          <div className="col-lg-10">
             <div className="row">
-              <div className="col-md-12 d-flex justify-content-center">
+              <div className="col-lg-12 d-flex justify-content-center">
                 <h4>
                   Specification : {location.state.specification.specification}
                 </h4>
@@ -83,7 +85,7 @@ function AssignTags() {
         </div>
       </div>
       <form onSubmit={HandleSubmit} className="py-4">
-        <button type="submit" className="data-from-btn me-auto ms-auto">
+        <button type="submit" disabled={arrayLength===location.state.quantity ? false :true}  className="data-from-btn me-auto ms-auto">
           <span>
             Submit
             <i className="fa fa-long-arrow-right" aria-hidden="true"></i>

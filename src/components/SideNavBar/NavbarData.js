@@ -44,7 +44,7 @@ export const route = [
       },
       {
         name: "Add Item",
-        path: "/addcatagory/additems",
+        path: "/additems/id",
         icon: <FaMoneyBill className="icons" />,
       },
     ],

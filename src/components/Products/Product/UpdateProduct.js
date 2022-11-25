@@ -15,7 +15,7 @@ import {
 import axios from "axios";
 import { useAlert } from "react-alert";
 import { showVender } from "../../../features/venderSlice";
-
+import { useNavigate } from "react-router-dom";
 function UpdateProduct(props) {
     const User = JSON.parse(localStorage.getItem("Data"));
   const { catagoryList } = useSelector(showCatagory);
@@ -28,6 +28,7 @@ function UpdateProduct(props) {
   const [quantity, setquanitity] = useState(parseInt(props.data.quantity));
   const [Purchaser, setPurchaser] = useState(props.data.purchaser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const alert = useAlert();
   const UpdateStoreAdd = (id, quantityOld) => {
     const value = {
@@ -58,13 +59,12 @@ function UpdateProduct(props) {
       catagory: catagoryID,
       item: itemId,
       quantity: parseInt(quantity),
-      purchaser: Purchaser,
-      vender: venderId,
     };
     // CheckStoreIDSub();
     const data = { id: props.data.id, value: value };
     dispatch(updateUni(data))
-      .then(() => {
+      .then((res) => {
+        // navigate("/addservicetag",{state:res.payload});
         alert.success("Data Update successfully!");
       })
       .catch((error) => {
@@ -100,12 +100,12 @@ function UpdateProduct(props) {
   return (
     <div className="container w-100 Page-Margin">
       <div className="row d-flex justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <form className="data-from " onSubmit={HandleSubmit}>
             <span className="data-from-title">Add Product</span>
             {/* Catagoy and item */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -129,7 +129,7 @@ function UpdateProduct(props) {
                   <span className="shadow-input1"></span>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-lg-6 col-sm-12">
                 <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -161,7 +161,7 @@ function UpdateProduct(props) {
             </div>
             {/* Qunatity and Vender */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="wrap-input1">
                   <input
                     min={0}
@@ -171,46 +171,6 @@ function UpdateProduct(props) {
                     onChange={handleChangeQun}
                     className="input1"
                     placeholder="Quantiy"
-                  />
-                  <span className="shadow-input1"></span>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="wrap-input1">
-                  <div className="selectdiv">
-                    <label>
-                      <select
-                        value={venderId}
-                        onChange={handleChangeVender}
-                        className="input1"
-                        name="Catagory"
-                        id=""
-                      >
-                        <option value="-1"> Select Vender </option>
-                        {venderList.map((data, i) => {
-                          return (
-                            <option key={i} value={data._id}>
-                              {data.venderName}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </label>
-                  </div>
-                  <span className="shadow-input1"></span>
-                </div>
-              </div>
-            </div>
-            {/* Purchaser */}
-            <div className="row">
-              <div className="col-md-6">
-                <div className="wrap-input1">
-                  <input
-                    className="input1"
-                    type="text"
-                    value={Purchaser}
-                    onChange={handleChangePur}
-                    placeholder="Purchaser"
                   />
                   <span className="shadow-input1"></span>
                 </div>

@@ -39,12 +39,12 @@ function Login() {
       {status === "LoadingLogin" ? (
         <IsLoading />
       ) : (
-        <div className="col-md-12">
+        <div className="col-lg-12">
           <div className="container-fluid   h-10  d-flex justify-content-center align-items-center ">
             <div className="row w-5 d-flex  justify-content-center">
-              <div className="col-md-12   col-lg-10 ">
-                <div className="wrap d-md-flex">
-                  <div className="text-wrap p-4 p-lg-5 text-center d-flex align-items-center justify-content-center order-md-last">
+              <div className="col-lg-12   col-lg-10 ">
+                <div className="wrap d-lg-flex">
+                  <div className="text-wrap p-4 p-lg-5 text-center d-flex align-items-center justify-content-center order-lg-last">
                     <div className="text ">
                     <img src="./COMSATS_new_logo.png" width={'100'} alt="" />
                       <h2>Inventory Management System</h2>
@@ -93,8 +93,8 @@ function Login() {
                           Login
                         </button>
                       </div>
-                      <div className="form-group d-md-flex">
-                        <div className="w-50 text-md-right">
+                      <div className="form-group d-lg-flex">
+                        <div className="w-50 text-lg-right">
                           <a href="/">Forgot Password</a>
                         </div>
                       </div>

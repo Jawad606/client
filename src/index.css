@@ -7,12 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: darkgray !important;
 }
+table{
+  z-index: 1;
+position: sticky;
+}
 
-table,th{
-  color: rgb(73, 72, 72) !important;
+th,thead{
+  color: #fff !important;
+  background-color:#205375!important;
 }
 tr,td{
-  color: rgb(95, 95, 95) !important;
+  color: black!important;
 }
 @media (max-width: 576px) { 
 td{

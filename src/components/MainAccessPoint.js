@@ -37,6 +37,7 @@ import AddVender from "./Vender/AddVender/AddVender";
 import Vender from "./Vender/Venders/Vender";
 import { useSelector } from "react-redux";
 import { showUser } from "../features/userSlice";
+import AddSubItem from "./Catagory/AddCatagories/AddItems/SubCatagory/AddSubItem";
 export function RenderNevigation() {
   const navigate = useNavigate();
   navigate("/home");
@@ -58,7 +59,7 @@ function MainAccessPoint() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/client" element={<Login />} />
+        <Route path="/client/" element={<Login />} />
       </Routes>
 
       <div className={`d-flex ${toggled ? "toggled" : ""}`}>
@@ -68,14 +69,15 @@ function MainAccessPoint() {
           status === "Loginsuccess" && <ApiComponent />}
         {location.pathname !== "/login" &&
           location.pathname !== "/" &&
-          location.pathname !== "/client" && (
+          location.pathname !== "/client/" && (
             <NavBar toggled={toggled} handleToggleSidebar={handleToggleSidebar}>
               {location.pathname !== "/login" &&
                 location.pathname !== "/" &&
-                location.pathname !== "/client" && (
+                location.pathname !== "/client/" && (
                   <TopNav
                     toggled={toggled}
                     handleToggleSidebar={handleToggleSidebar}
+                    location={location.pathname.split('/')[1]}
                   />
                 )}
               <Routes>
@@ -125,7 +127,7 @@ function MainAccessPoint() {
                     />
                   }
                 >
-                  <Route path="/catagory/:id" element={<Items />} />
+                  <Route path="/items/:id" element={<Items />} />
                 </Route>
                 <Route
                   element={
@@ -143,8 +145,22 @@ function MainAccessPoint() {
                     />
                   }
                 >
-                  <Route path="/addcatagory/:id" element={<AddItems />} />
+                  <Route path="/additems/:id" element={<AddItems />} />
                 </Route>
+
+                <Route
+                  element={
+                    <PrivateWrapper
+                      auth={{ isAuthenticated: localStorage.getItem("auth") }}
+                    />
+                  }
+                >
+                  <Route path="/addsubitem/:id" element={<AddSubItem />} />
+                </Route>
+
+
+
+
 
                 <Route
                   element={

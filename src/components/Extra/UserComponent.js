@@ -39,8 +39,8 @@
 //       <section className="ftco-section">
 //         <div className="container">
 //           <div className="row justify-content-center">
-//             <div className="col-md-6 col-lg-5">
-//               <div className="login-wrap p-4 p-md-5">
+//             <div className="col-lg-6 col-lg-5">
+//               <div className="login-wrap p-4 p-lg-5">
 //                 <div className="icon d-flex align-items-center justify-content-center">
 //                   <span className="fa fa-user-o"></span>
 //                 </div>
@@ -56,7 +56,7 @@
 //                       required
 //                     />
 //                   </div>
-//                   <div className="form-group d-flex">
+//                   <div className="form-group ">
 //                     <input
 //                       type="password"
 //                       className="form-control rounded-left"
@@ -66,7 +66,7 @@
 //                       required
 //                     />
 //                   </div>
-//                   <div className="form-group d-md-flex">
+//                   <div className="form-group d-lg-flex">
 //                     <div className="w-50">
 //                       <label className="checkbox-wrap checkbox-primary">
 //                         Remember Me
@@ -74,7 +74,7 @@
 //                         <span className="checkmark"></span>
 //                       </label>
 //                     </div>
-//                     <div className="w-50 text-md-right">
+//                     <div className="w-50 text-lg-right">
 //                       <a href="#">Forgot Password</a>
 //                     </div>
 //                   </div>

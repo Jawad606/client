@@ -24,20 +24,20 @@ function PayBill() {
     <div>
        <div className="container w-100 Page-Margin">
         <div className="row  d-flex justify-content-center">
-          <div className="col-md-6  ">
+          <div className="col-lg-6  ">
             <form className="data-from " onSubmit={HandleSubmit}>
               <div className="row d-flex justify-content-center">
-                <div className="col-md-11">
+                <div className="col-lg-11">
                   <span className="data-from-title">Pay Bill</span>
                 </div>
               </div>
               {/* Catagoy and item */}
               <div className="row d-flex justify-content-start">
-                <div className="col-md-12">
+                <div className="col-lg-12">
                   <div className="row">
                   </div>
                 </div>
-                <div className="col-md-12 col-sm-12">
+                <div className="col-lg-12 col-sm-12">
                   <div className="row">
                   </div>
                 </div>

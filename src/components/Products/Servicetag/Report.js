@@ -9,7 +9,7 @@ function ReportPdf(clientes) {
       text: "Inventry Management System",
       fontSize: 15,
       bold: true,
-      margin: [15, 20, 0, 45], // left, top, right, bottom
+      margin: [100, 20, 0, 45], // left, top, right, bottom
     },
   ];
 

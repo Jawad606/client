@@ -30,20 +30,20 @@ function AddEmployee() {
     <div>
          <div className="container w-100 Page-Margin">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <form className="data-from " onSubmit={HandleSubmit}>
               <div className="row">
-                <div className="col-md-11">
+                <div className="col-lg-11">
                   <span className="data-from-title">Add Employee</span>
                 </div>
               </div>
               {/* Name */}
               <div className="row">
-                <div className="col-md-6">
-                <div className="col-md-2 py-1 px-2">
+                <div className="col-lg-6">
+                <div className="col-lg-2 py-1 px-2">
                   <h5>Name</h5>
                 </div>
-                <div className="col-md-10 ">
+                <div className="col-lg-10 ">
                   <div className="wrap-input1">
                     <input
                       className="input1"
@@ -56,11 +56,11 @@ function AddEmployee() {
                   </div>
                 </div>
                 </div>
-                  <div className="col-md-6">
-                <div className="col-md-2 py-1 px-2">
+                  <div className="col-lg-6">
+                <div className="col-lg-2 py-1 px-2">
                   <h5>Designation</h5>
                 </div>
-                <div className="col-md-10 ">
+                <div className="col-lg-10 ">
                   <div className="wrap-input1">
                     <input
                       className="input1"
@@ -73,12 +73,12 @@ function AddEmployee() {
                   </div>
                 </div>
                 </div>
-               <div className="col-md-9">
+               <div className="col-lg-9">
                <div className="row">
-                  <div className="col-md-4 py-1 px-2 text-end">
+                  <div className="col-lg-4 py-1 px-2 text-end">
                     <h5>Department</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>

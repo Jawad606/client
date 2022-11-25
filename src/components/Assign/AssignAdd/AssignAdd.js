@@ -8,6 +8,8 @@ import {
   showAssignStore,
   updateAssigns,
 } from "../../../features/AssignStoreSlice";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import { showCatagory } from "../../../features/catagorySlice";
 import { showItem } from "../../../features/itemSlice";
 import { showStore, updateStore } from "../../../features/storeSlice";
@@ -33,6 +35,7 @@ function AssignAdd() {
   const [returnItem, setreturnItem] = useState("");
   const [returnQuantity, setreturnQuantity] = useState("");
   const alert = useAlert();
+  const [asset, setAsset] = useState("");
   const [specificID, setspecificID] = useState("");
 
   const data = [
@@ -55,7 +58,6 @@ function AssignAdd() {
     { id: 17, for: "FACILITY", depart: "CS", class: "cs_facility" },
   ];
   const AddAssign = () => {
-
     const value = {
       catagory: catagoryID,
       item: itemId,
@@ -64,16 +66,15 @@ function AssignAdd() {
       ItemFor: itemFor,
       employee: employeeID,
       classRoom: classRoom,
-      specification:specificID,
-      returnItem:returnItem,
-      returnQuantity:returnQuantity
+      specification: specificID,
+      returnItem: returnItem,
+      returnQuantity: returnQuantity,
     };
-    console.log(value)
+    console.log(value);
     dispatch(addAssign(value))
       .then((res) => {
         alert.success("Data insert successfully!");
-        navigate("/assignsevicetag",{state:res.payload});
-        
+        navigate("/assignsevicetag", { state: res.payload });
       })
       .catch((error) => {
         alert.error("Error " + error);
@@ -95,7 +96,7 @@ function AssignAdd() {
     if (parseInt(quantityOld) >= parseInt(quantity)) {
       const value = { quantity: parseInt(quantityOld) - parseInt(quantity) };
       const data = { id: id, value: value };
-      console.log(value)
+      console.log(value);
       dispatch(updateStore(data))
         .then((response) => {
           AddAssign();
@@ -149,85 +150,96 @@ function AssignAdd() {
   return (
     <div className="container w-100 Page-Margin">
       <div className="row d-flex justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <form className="data-from " onSubmit={HandleSubmit}>
             <span className="data-from-title">Add Product</span>
             {/* Catagoy and item */}
             <div className="row">
-              <div className="col-md-6">
-                <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+              <div className="col-lg-2 py-1 px-1 text-start">
+                <h5>Asset Types</h5>
+              </div>
+              <div className="col-lg-10">
+                <div className="wrap-input1">
+                  <div className="selectdiv">
+                    <label>
+                      <select
+                        value={asset}
+                        onChange={(e) => setAsset(e.target.value)}
+                        className="input1"
+                        name="Type of Assets"
+                        id=""
+                      >
+                        <option value="-1">Select Catagory</option>
+                        <option value="Fixed">Fixed Assets</option>
+                        <option value="Miscellaneous">
+                          Miscellaneous Asset
+                        </option>
+                        <option value="Working">Working</option>
+                      </select>
+                    </label>
+                  </div>
+                  <span className="shadow-input1"></span>
+                </div>
+              </div>
+            </div>
+            <div className="row pb-3">
+              <div className="col-lg-6">
+                <div className="row ">
+                  <div className="col-lg-4 py-1 text-start px-2">
                     <h5>Catagory</h5>
                   </div>
-                  <div className="col-md-8">
-                    <div className="wrap-input1">
-                      <div className="selectdiv">
-                        <label>
-                          <select
-                            value={catagoryID}
-                            onChange={handleChangeCat}
-                            className="input1"
-                            name="Catagory"
-                            id=""
-                          >
-                            <option value="-1">Select Catagory</option>
-                            {catagoryList.map((data, i) => (
-                              <option key={i} value={data._id}>
-                                {data.catagoryName}
-                              </option>
-                            ))}
-                          </select>
-                        </label>
-                      </div>
-                      <span className="shadow-input1"></span>
-                    </div>
+                  <div className="col-lg-8 ">
+                    <Autocomplete
+                      onChange={(event, value,reason) =>  reason==='clear' ? setcatagoryID('-1') :setcatagoryID(value._id)}
+                      disablePortal
+                      className="input1"
+                      id="combo-box-demo"
+                      options={catagoryList.filter(
+                        (item) => item.assetType === asset
+                      )}
+                      // sx={{ width: 300 }}
+                      getOptionLabel={(option) =>
+                        option.catagoryName.toString()
+                      }
+                      renderInput={(params) => (
+                        <TextField {...params} label="Select Catagory" />
+                      )}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="col-md-6 col-sm-12">
+              <div className="col-lg-6 col-sm-12">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-5">
-                    <h5>Item</h5>
+                  <div className="col-lg-4 py-1 text-start px-2">
+                    <h5>Items</h5>
                   </div>
-                  <div className="col-md-8">
-                    <div className="wrap-input1">
-                      <div className="selectdiv">
-                        <label>
-                          <select
-                            className="input1"
-                            name="item"
-                            value={itemId}
-                            onChange={handleChangeItem}
-                          >
-                            <option value="-1">Select Item</option>
-                            {itemList
-                              .filter(
-                                (sHowItem) => sHowItem.catId._id === catagoryID
-                              )
-                              .map((data, i) => {
-                                return (
-                                  <option key={i} value={data._id}>
-                                    {data.itemName}
-                                  </option>
-                                );
-                              })}
-                          </select>
-                        </label>
-                      </div>
-                      <span className="shadow-input1"></span>
-                    </div>
+                  <div className="col-lg-8">
+                    {" "}
+                    <Autocomplete
+                      onChange={(event, value) => setitemId(value._id)}
+                      disablePortal
+                      className="input1"
+                      id="combo-box-demo"
+                      options={itemList.filter(
+                        (sHowItem) => sHowItem.catId._id === catagoryID
+                      )}
+                      getOptionLabel={(option) => option.itemName.toString()}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Select Item" />
+                      )}
+                    />
                   </div>
                 </div>
               </div>
             </div>
             {/* Qunatity and Vender */}
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Department</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <div className="selectdiv">
                         <label>
@@ -250,12 +262,12 @@ function AssignAdd() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-5">
+                  <div className="col-lg-4 py-1 px-5">
                     <h5>For </h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <div className="selectdiv">
                         <label>
@@ -265,8 +277,7 @@ function AssignAdd() {
                             onChange={handleChangeItemFor}
                           >
                             <option value="">Please Select Item</option>
-                            <option value="CLASS">Class</option>
-                            <option value="LAB">Lab</option>
+                            <option value="Room">Room Number</option>
                             <option value="FACILITY">facility</option>
                           </select>
                         </label>
@@ -276,13 +287,22 @@ function AssignAdd() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-12">
+              <div className="col-lg-12 pb-3">
                 <div className="row">
-                  <div className="col-md-2 py-1 px-2">
-                    <h5>Class Room</h5>
+                  <div className="col-lg-2 py-1 px-2">
+                    <h5>
+                      {"Issued To"}
+                    </h5>
                   </div>
-                  <div className="col-md-10">
-                    <div className="wrap-input1">
+                  <div className="col-lg-10">
+                    <input
+                      type="text"
+                      value={classRoom}
+                      className="input1"
+                      placeholder="Issued to Room/Person"
+                      onChange={(e) => setclassRoom(e.target.value)}
+                    />
+                    {/* <div className="wrap-input1">
                       <div className="selectdiv">
                         <label>
                           <select
@@ -308,18 +328,18 @@ function AssignAdd() {
                         </label>
                       </div>
                       <span className="shadow-input1"></span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Quantity</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         min={0}
@@ -335,12 +355,12 @@ function AssignAdd() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Employee</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <div className="selectdiv">
                         <label>
@@ -367,17 +387,17 @@ function AssignAdd() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Retured Item</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
                         required
                         value={returnItem}
-                        onChange={(e)=>setreturnItem(e.target.value)}
+                        onChange={(e) => setreturnItem(e.target.value)}
                         type="text"
                         className="input1"
                         placeholder="Item"
@@ -387,17 +407,17 @@ function AssignAdd() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <div className="row">
-                  <div className="col-md-4 py-1 px-2">
+                  <div className="col-lg-4 py-1 px-2">
                     <h5>Retured Quantity</h5>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-lg-8">
                     <div className="wrap-input1">
                       <input
-                      required
+                        required
                         value={returnQuantity}
-                        onChange={(e)=>setreturnQuantity(e.target.value)}
+                        onChange={(e) => setreturnQuantity(e.target.value)}
                         min={0}
                         type="number"
                         pattern="[0-9]*"
@@ -411,47 +431,53 @@ function AssignAdd() {
               </div>
             </div>
             <div className="row">
-                <div className="col-md-12">
-                  <div className="row">
-                    <div className="col-md-2">
-                      <h5>Model</h5>
-                    </div>
-                    <div className="col-md-10">
-                      <div className="wrap-input1">
-                        <div className="selectdiv">
-                          <label>
-                            <select
-                              required
-                              className="input1"
-                              name="item"
-                              value={specificID}
-                              onChange={(e) => setspecificID(e.target.value)}
-                            >
-                              <option value="-1">Select Model Specification</option>
-                              {specificList
-                                .filter(
-                                  (sHowItem) =>
-                                    sHowItem.catagory._id === catagoryID &&
-                                    sHowItem.item._id === itemId
-                                )
-                                .map((data, i) => {
-                                  return (
-                                    <option key={i} value={data._id}>
-                                      {data.model}
-                                    </option>
-                                  );
-                                })}
-                            </select>
-                          </label>
-                        </div>
-                        <span className="shadow-input1"></span>
+              <div className="col-lg-12">
+                <div className="row">
+                  <div className="col-lg-2">
+                    <h5>Model</h5>
+                  </div>
+                  <div className="col-lg-10">
+                    <div className="wrap-input1">
+                      <div className="selectdiv">
+                        <label>
+                          <select
+                            required
+                            className="input1"
+                            name="item"
+                            value={specificID}
+                            onChange={(e) => setspecificID(e.target.value)}
+                          >
+                            <option value="-1">
+                              Select Model Specification
+                            </option>
+                            {specificList
+                              .filter(
+                                (sHowItem) =>
+                                  sHowItem.catagory._id === catagoryID &&
+                                  sHowItem.item._id === itemId
+                              )
+                              .map((data, i) => {
+                                return (
+                                  <option key={i} value={data._id}>
+                                    {data.model}
+                                  </option>
+                                );
+                              })}
+                          </select>
+                        </label>
                       </div>
+                      <span className="shadow-input1"></span>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
             <div className="container-data-from-btn">
-              <button type="submit" className="data-from-btn"  disabled={!User.admin}>
+              <button
+                type="submit"
+                className="data-from-btn"
+                disabled={!User.admin}
+              >
                 <span>
                   Submit
                   <i className="fa fa-long-arrow-right" aria-hidden="true"></i>

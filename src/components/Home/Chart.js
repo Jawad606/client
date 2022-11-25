@@ -48,7 +48,7 @@ function Chart() {
     <div className="Chart">
       <div className="container ">
         <div className="row d-flex justify-content-center align-items-center">
-          <div className="col-md-6 m-0 py-2">
+          <div className="col-lg-6 m-0 py-2">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>
@@ -71,7 +71,7 @@ function Chart() {
               <span className="shadow-input1"></span>
             </div>
           </div>
-          <div className="col-md-6 col-sm-12">
+          <div className="col-lg-6 col-sm-12">
             <div className="wrap-input1 m-0">
               <div className="selectdiv">
                 <label>

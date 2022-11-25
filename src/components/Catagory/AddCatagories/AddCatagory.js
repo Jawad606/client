@@ -9,17 +9,17 @@ import ReadCsv from "../../ReadCSV/ReadCsv";
 function AddCatagory() {
   const [Catagory, setCatagory] = useState("");
   const [click, setclick] = useState(false);
+  const [asset,setAsset]=useState('')
   const dispatch = useDispatch();
   const alert = useAlert();
   const User = JSON.parse(localStorage.getItem("Data"));
   const nevigation = useNavigate();
   const HandleSubmit = (event) => {
     event.preventDefault();
-    const value = { catagoryName: Catagory };
+    const value = { catagoryName: Catagory ,'assetType':asset };
     dispatch(addCatagory(value))
       .then((response) => {
-        console.log(response.payload._id);
-        nevigation(`/addcatagory/${response.payload._id}`);
+        nevigation(`/additems/${response.payload._id}`);
         alert.success("Data insert successfully!");
       })
       .catch(function (error) {
@@ -37,25 +37,52 @@ function AddCatagory() {
 
       <div className="container w-100 Page-Margin">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <form className="data-from " onSubmit={HandleSubmit}>
+            
               <div className="row">
-                <div className="col-md-11">
+                <div className="col-lg-11">
                   <span className="data-from-title">Add Catagory</span>
                 </div>
-                <div className="col-md-1 icon-back d-flex justify-content-center align-items-center">
+                <div className="col-lg-1 icon-back d-flex justify-content-center align-items-center">
                   <AiFillFileAdd
                     onClick={() => setclick(!click)}
                     className="icons colors"
                   />
                 </div>
               </div>
+              <div className="row">
+                <div className="col-lg-2 py-1 px-1 text-start">
+                  <h5>Asset Types</h5>
+                </div>
+                <div className="col-lg-10">
+                  <div className="wrap-input1">
+                    <div className="selectdiv">
+                      <label>
+                        <select
+                          value={asset}
+                          onChange={(e)=>setAsset(e.target.value)}
+                          className="input1"
+                          name="Type of Assets"
+                          id=""
+                        >
+                          <option value="-1">Select Catagory</option>
+                          <option value="Fixed">Fixed Assets</option>
+                          <option value="Miscellaneous">Miscellaneous Asset</option>
+                          <option value="Working">Working</option>
+                        </select>
+                      </label>
+                    </div>
+                    <span className="shadow-input1"></span>
+                  </div>
+                </div>
+              </div>
               {/* Purchaser */}
               <div className="row">
-                <div className="col-md-2 py-1 px-2">
+                <div className="col-lg-2 py-1 px-2">
                   <h5>Catagory</h5>
                 </div>
-                <div className="col-md-10 ">
+                <div className="col-lg-10 ">
                   <div className="wrap-input1">
                     <input
                       className="input1"
@@ -69,7 +96,11 @@ function AddCatagory() {
                 </div>
               </div>
               <div className="container-data-from-btn">
-                <button type="submit" className="data-from-btn"  disabled={!User.admin}>
+                <button
+                  type="submit"
+                  className="data-from-btn"
+                  disabled={!User.admin}
+                >
                   <span>
                     Save & Next
                     <i

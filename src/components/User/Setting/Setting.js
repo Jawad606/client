@@ -36,23 +36,23 @@ function Setting() {
         </Modal>
       <div className="container w-100 Page-Margin">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-8">
+          <div className="col-lg-8">
             <form className="data-from ">
               <span className="data-from-title">Update User</span>
               {/* Purchaser */}
               <div className="row  py-2 d-flex align-items-center justify-content-end">
-               <div className="col-md-12 d-flex align-items-center justify-content-end">
+               <div className="col-lg-12 d-flex align-items-center justify-content-end">
                  <h5 className="h5" onClick={()=>toggle()}>Change Password</h5>
 
                </div>
               </div>
               <div className="row  py-4 d-flex align-items-center justify-content-center">
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-md-4 d-flex align-items-center">
+                    <div className="col-lg-4 d-flex align-items-center">
                       <h5 className="h5">First Name</h5>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="wrap-input1">
                         <input
                           className="input1"
@@ -65,12 +65,12 @@ function Setting() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-md-4 d-flex align-items-center">
+                    <div className="col-lg-4 d-flex align-items-center">
                       <h5 className="h5">Last Name</h5>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="wrap-input1 m-0">
                         <input
                           className="input1"
@@ -85,12 +85,12 @@ function Setting() {
                 </div>
               </div>
               <div className="row py-4">
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-md-4 d-flex align-items-center">
+                    <div className="col-lg-4 d-flex align-items-center">
                       <h5 className="h5">Designation</h5>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="wrap-input1 m-0">
                         <input
                           className="input1"
@@ -103,12 +103,12 @@ function Setting() {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-md-4 d-flex align-items-center">
+                    <div className="col-lg-4 d-flex align-items-center">
                       <h5 className="h5"> Email</h5>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <div className="wrap-input1 m-0">
                         <input className="input1"  onChange={ (e)=> setemail(e.target.value) } value={email} type="text" />
                         <span className="shadow-input1"></span>
@@ -118,12 +118,12 @@ function Setting() {
                 </div>
               </div>
               <div className="row py-4">
-                <div className="col-md-6">
+                <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-md-4 d-flex align-items-center">
+                    <div className="col-lg-4 d-flex align-items-center">
                       <h5 className="h5">Admin</h5>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-lg-8">
                       <Switch
                         onColor="#2f659b"
                          onChange={()=>setadmin(!admin)}
