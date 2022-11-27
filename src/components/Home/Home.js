@@ -100,14 +100,6 @@ function Home() {
             <RenderCard />
           </div>
         </div>
-        <div className="row  mx-5 d-flex justify-content-center">
-          <div className="col-lg-4 p px-1 mb-2">
-            <Chart />
-          </div>
-          <div className="col-md ms-lg-4 p">
-            <FindTag />
-          </div>
-        </div>
         <div className="row px-5 py-4 ">
           <div className="col-lg-6  p overflow">
             <Link to={"/product"}>
@@ -164,6 +156,15 @@ function Home() {
             </table>
           </div>
         </div>
+        <div className="row  mx-5 d-flex justify-content-center">
+          <div className="col-lg-4 p px-1 mb-2">
+            <Chart />
+          </div>
+          <div className="col-md ms-lg-4 p">
+            <FindTag />
+          </div>
+        </div>
+        
       </div>
     </>
   );

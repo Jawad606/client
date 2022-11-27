@@ -80,6 +80,11 @@ function AssignTags() {
                   Specification : {location.state.specification.specification}
                 </h4>
               </div>
+              <div className="col-lg-12 d-flex justify-content-center">
+                <h4>
+                  Quantity : {location.state.quantity}
+                </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -97,13 +102,14 @@ function AssignTags() {
           <tr>
             <th>ID</th>
             <th>tag</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredMap.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item._id}</td>
+                <td>{index+1}</td>
                 <td>{item.tag}</td>
                 <td>
                   <input

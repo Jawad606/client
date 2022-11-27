@@ -70,7 +70,6 @@ function AssignAdd() {
       returnItem: returnItem,
       returnQuantity: returnQuantity,
     };
-    console.log(value);
     dispatch(addAssign(value))
       .then((res) => {
         alert.success("Data insert successfully!");
@@ -132,6 +131,7 @@ function AssignAdd() {
   };
 
   const handleChangeQun = (e) => {
+   
     setquanitity(e.target.value);
   };
   const handleChangeCat = (e) => {

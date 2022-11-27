@@ -7,6 +7,7 @@ function AddEmployee() {
   const User = JSON.parse(localStorage.getItem("Data"));
   const [name, setName] = useState("");
   const [designation, setdesignation] = useState("");
+  const [empId, setempId] = useState("");
   const [department, setdepartment] = useState("");
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -15,7 +16,8 @@ function AddEmployee() {
     const value = { 
       employeeName: name,
       Designation: designation,
-      Department:department
+      Department:department,
+      empId:empId,
      };
     dispatch(addEmployee(value))
       .then((response) => {
@@ -39,6 +41,23 @@ function AddEmployee() {
               </div>
               {/* Name */}
               <div className="row">
+              <div className="col-lg-6">
+                <div className="col-lg-6 py-1 px-2">
+                  <h5>Employee ID</h5>
+                </div>
+                <div className="col-lg-10 ">
+                  <div className="wrap-input1">
+                    <input
+                      className="input1"
+                      type="text"
+                      value={empId}
+                      onChange={(e)=>setempId(e.target.value)}
+                      placeholder="Employee ID"
+                    />
+                    <span className="shadow-input1"></span>
+                  </div>
+                </div>
+                </div>
                 <div className="col-lg-6">
                 <div className="col-lg-2 py-1 px-2">
                   <h5>Name</h5>
@@ -67,18 +86,18 @@ function AddEmployee() {
                       type="text"
                       value={designation}
                       onChange={(e)=>setdesignation(e.target.value)}
-                      placeholder="Name"
+                      placeholder="Designation"
                     />
                     <span className="shadow-input1"></span>
                   </div>
                 </div>
                 </div>
-               <div className="col-lg-9">
+               <div className="col-lg-6">
                <div className="row">
                   <div className="col-lg-4 py-1 px-2 text-end">
                     <h5>Department</h5>
                   </div>
-                  <div className="col-lg-8">
+                  <div className="col-lg-10">
                     <div className="wrap-input1">
                   <div className="selectdiv">
                     <label>
@@ -87,7 +106,7 @@ function AddEmployee() {
                         value={department}
                         onChange={(e)=>setdepartment(e.target.value)}
                       >
-                        <option value="">Please Select Department</option>
+                        <option value="">Select Department</option>
                         <option value="Ms Department">Ms Department</option>
                         <option value="Cs Department">Cs Department</option>
                         <option value="ME Department">ME Department</option>
