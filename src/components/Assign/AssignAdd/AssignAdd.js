@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssign } from "../../../features/assignSlice";
 import { useNavigate } from "react-router-dom";
@@ -38,25 +37,25 @@ function AssignAdd() {
   const [asset, setAsset] = useState("");
   const [specificID, setspecificID] = useState("");
 
-  const data = [
-    { id: 1, for: "CLASS", depart: "CS", class: "c1" },
-    { id: 2, for: "CLASS", depart: "CS", class: "c2" },
-    { id: 3, for: "CLASS", depart: "CS", class: "c3" },
-    { id: 4, for: "CLASS", depart: "CS", class: "c4" },
-    { id: 5, for: "CLASS", depart: "CS", class: "c5" },
-    { id: 6, for: "CLASS", depart: "CS", class: "c1.1" },
-    { id: 7, for: "CLASS", depart: "CS", class: "c1.2" },
-    { id: 8, for: "CLASS", depart: "CS", class: "c1.3" },
-    { id: 9, for: "CLASS", depart: "CS", class: "c1.4" },
-    { id: 10, for: "CLASS", depart: "CS", class: "c1.5" },
-    { id: 11, for: "CLASS", depart: "CS", class: "c2.1" },
-    { id: 12, for: "CLASS", depart: "CS", class: "c2.2" },
-    { id: 13, for: "CLASS", depart: "CS", class: "c2.3" },
-    { id: 14, for: "CLASS", depart: "CS", class: "c2.4" },
-    { id: 15, for: "LAB", depart: "CS", class: "c1" },
-    { id: 16, for: "LAB", depart: "CS", class: "c2" },
-    { id: 17, for: "FACILITY", depart: "CS", class: "cs_facility" },
-  ];
+  // const data = [
+  //   { id: 1, for: "CLASS", depart: "CS", class: "c1" },
+  //   { id: 2, for: "CLASS", depart: "CS", class: "c2" },
+  //   { id: 3, for: "CLASS", depart: "CS", class: "c3" },
+  //   { id: 4, for: "CLASS", depart: "CS", class: "c4" },
+  //   { id: 5, for: "CLASS", depart: "CS", class: "c5" },
+  //   { id: 6, for: "CLASS", depart: "CS", class: "c1.1" },
+  //   { id: 7, for: "CLASS", depart: "CS", class: "c1.2" },
+  //   { id: 8, for: "CLASS", depart: "CS", class: "c1.3" },
+  //   { id: 9, for: "CLASS", depart: "CS", class: "c1.4" },
+  //   { id: 10, for: "CLASS", depart: "CS", class: "c1.5" },
+  //   { id: 11, for: "CLASS", depart: "CS", class: "c2.1" },
+  //   { id: 12, for: "CLASS", depart: "CS", class: "c2.2" },
+  //   { id: 13, for: "CLASS", depart: "CS", class: "c2.3" },
+  //   { id: 14, for: "CLASS", depart: "CS", class: "c2.4" },
+  //   { id: 15, for: "LAB", depart: "CS", class: "c1" },
+  //   { id: 16, for: "LAB", depart: "CS", class: "c2" },
+  //   { id: 17, for: "FACILITY", depart: "CS", class: "cs_facility" },
+  // ];
   const AddAssign = () => {
     const value = {
       catagory: catagoryID,
@@ -131,15 +130,14 @@ function AssignAdd() {
   };
 
   const handleChangeQun = (e) => {
-   
     setquanitity(e.target.value);
   };
-  const handleChangeCat = (e) => {
-    setcatagoryID(e.target.value);
-  };
-  const handleChangeItem = (e) => {
-    setitemId(e.target.value);
-  };
+  // const handleChangeCat = (e) => {
+  //   setcatagoryID(e.target.value);
+  // };
+  // const handleChangeItem = (e) => {
+  //   setitemId(e.target.value);
+  // };
   const handleChangeDepart = (e) => {
     setdepartment(e.target.value);
   };
@@ -169,7 +167,7 @@ function AssignAdd() {
                         name="Type of Assets"
                         id=""
                       >
-                        <option value="-1">Select Catagory</option>
+                        <option value="Nan">Select Catagory</option>
                         <option value="Fixed">Fixed Assets</option>
                         <option value="Miscellaneous">
                           Miscellaneous Asset
@@ -190,7 +188,11 @@ function AssignAdd() {
                   </div>
                   <div className="col-lg-8 ">
                     <Autocomplete
-                      onChange={(event, value,reason) =>  reason==='clear' ? setcatagoryID('-1') :setcatagoryID(value._id)}
+                      onChange={(event, value, reason) =>
+                        reason === "clear"
+                          ? setcatagoryID("Nan")
+                          : setcatagoryID(value._id)
+                      }
                       disablePortal
                       className="input1"
                       id="combo-box-demo"
@@ -248,7 +250,7 @@ function AssignAdd() {
                             value={department}
                             onChange={handleChangeDepart}
                           >
-                            <option value="">Select Department</option>
+                            <option value="Nan">Select Department</option>
                             <option value="MS">Ms Department</option>
                             <option value="CS">Cs Department</option>
                             <option value="ME">ME Department</option>
@@ -290,9 +292,7 @@ function AssignAdd() {
               <div className="col-lg-12 pb-3">
                 <div className="row">
                   <div className="col-lg-2 py-1 px-2">
-                    <h5>
-                      {"Issued To"}
-                    </h5>
+                    <h5>{"Issued To"}</h5>
                   </div>
                   <div className="col-lg-10">
                     <input
@@ -312,7 +312,7 @@ function AssignAdd() {
                             name="Class Room"
                             id=""
                           >
-                            <option value="-1">Select ClassRoom</option>
+                            <option value="Nan">Select ClassRoom</option>
                             {data
                               .filter(
                                 (item) =>
@@ -361,27 +361,38 @@ function AssignAdd() {
                     <h5>Employee</h5>
                   </div>
                   <div className="col-lg-8">
-                    <div className="wrap-input1">
-                      <div className="selectdiv">
-                        <label>
-                          <select
+                          <Autocomplete
+                            onChange={(event, value, reason) =>
+                              reason === "clear"
+                                ? setemployeeID("Nan")
+                                : setemployeeID(value._id)
+                            }
+                            disablePortal
+                            className="input1"
+                            id="combo-box-demo"
+                            options={employeeList}
+                            // sx={{ width: 300 }}
+                            getOptionLabel={(option) =>
+                              option.employeeName.toString()
+                            }
+                            renderInput={(params) => (
+                              <TextField {...params} label="Select Employee" />
+                            )}
+                          />
+                          {/* <select
                             value={employeeID}
                             onChange={(e) => setemployeeID(e.target.value)}
                             className="input1"
                             name="Catagory"
                             id=""
                           >
-                            <option value="-1">Select Employee</option>
+                            <option value="Nan">Select Employee</option>
                             {employeeList.map((data, i) => (
                               <option key={i} value={data._id}>
                                 {data.employeeName}
                               </option>
                             ))}
-                          </select>
-                        </label>
-                      </div>
-                      <span className="shadow-input1"></span>
-                    </div>
+                          </select> */}
                   </div>
                 </div>
               </div>
@@ -447,7 +458,7 @@ function AssignAdd() {
                             value={specificID}
                             onChange={(e) => setspecificID(e.target.value)}
                           >
-                            <option value="-1">
+                            <option value="Nan">
                               Select Model Specification
                             </option>
                             {specificList

@@ -38,9 +38,6 @@ function Employees() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, filterData.length - page * rowsPerPage);
 
-
-
-  
   useEffect(() => {
     var datefromInput = "";
     var datetoInput = "";
@@ -104,7 +101,7 @@ function Employees() {
       case "2":
         const dataset = filterData.map((item, i) => {
           const date = new Intl.DateTimeFormat("en-US", {
-           dateStyle: "short",
+            dateStyle: "short",
           }).format(new Date(Date.parse(item.createdAt)));
           return {
             id: i,
@@ -129,6 +126,7 @@ function Employees() {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
+              <TableCell>Employee ID</TableCell>
               <TableCell align="center">Employee Name</TableCell>
               <TableCell align="center">Designation</TableCell>
               <TableCell align="center">Department</TableCell>
@@ -140,26 +138,25 @@ function Employees() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => (
                 <TableRow key={index}>
-                  <TableCell  scope="row">
-                    {index}
-                  </TableCell>
+                  <TableCell scope="row">{index}</TableCell>
+                  <TableCell scope="row">{row.empId}</TableCell>
                   <TableCell align="center">
-                  {" "}
-          <Link
-            to={{
-              pathname: `/employee/${row._id}`,
-            }}
-            params={{ id: row._id, employeeName: row.employeeName }}
-          >
-            {row.employeeName}{" "}
-          </Link>{" "}
+                    {" "}
+                    <Link
+                      to={{
+                        pathname: `/employee/${row._id}`,
+                      }}
+                      params={{ id: row._id, employeeName: row.employeeName }}
+                    >
+                      {row.employeeName}{" "}
+                    </Link>{" "}
                   </TableCell>
                   <TableCell align="center">{row.Designation}</TableCell>
                   <TableCell align="center">{row.Department}</TableCell>
                   <TableCell align="center">
                     {" "}
                     {new Intl.DateTimeFormat("en-US", {
-                     dateStyle: "short",
+                      dateStyle: "short",
                     }).format(new Date(Date.parse(row.createdAt)))}
                   </TableCell>
                 </TableRow>
@@ -183,7 +180,7 @@ function Employees() {
       </TableContainer>
     );
   };
-  
+
   const RenderStore = filterData.map((data, i) => {
     const { employeeName, Designation, Department, createdAt } = data;
     return (
@@ -204,7 +201,7 @@ function Employees() {
         <td>{Department}</td>
         <td>
           {new Intl.DateTimeFormat("en-US", {
-           dateStyle: "short",
+            dateStyle: "short",
           }).format(new Date(Date.parse(createdAt)))}
         </td>
       </tr>
@@ -296,15 +293,21 @@ function Employees() {
           } `}
         >
           <div className="col-lg-12 col-sm-12">
-          <Button className="mx-2" onClick={() =>setReport('1')}>PDF</Button>
-          <Button className="mx-2" onClick={() =>setReport('2')}>CSV</Button>
-          <Button className="mx-2" onClick={() =>setReport('3')}>EMAIL</Button>
+            <Button className="mx-2" onClick={() => setReport("1")}>
+              PDF
+            </Button>
+            <Button className="mx-2" onClick={() => setReport("2")}>
+              CSV
+            </Button>
+            <Button className="mx-2" onClick={() => setReport("3")}>
+              EMAIL
+            </Button>
           </div>
         </div>
         <div className="row">
           <div className=" d-flex justify-content-center">
             <div className=" s w-90  p  justify-content-lg-center justify-content-sm-start">
-              <RenderTable/>
+              <RenderTable />
               {/* <table className="table table-hover rounded">
                 <thead>
                   <tr>

@@ -38,8 +38,17 @@
   color: transparent;
   color: #EFEFEF;
 }
-.onTop{
-  position: sticky !important;
-  top: 0;
-  z-index: 3;
+
+@media screen and (min-width: 768px){
+  .onTop{
+    position: sticky !important;
+    top: 0;
+    z-index: 3;
+  }
+}
+@media screen and (max-width: 768px){
+  .onTop{
+    top: 0;
+    z-index: 3;
+  }
 }
