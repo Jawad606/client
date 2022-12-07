@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "."
+  "homepage": ".",
   "proxy": "https://university-backend-app.herokuapp.com/",
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
